@@ -1,0 +1,139 @@
+.custom-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    border-radius: 10px;
+    padding: 20px;
+    width: 500px; /* 원하는 모달의 너비 */
+    height: 300px; /* 원하는 모달의 높이 */
+  }
+  
+/* popup container */
+.popup {
+    position: absolute;
+    width: 967px;
+    height: 568px;
+    left: calc(50% - 483.5px);
+    top: 100px;
+    background: #1B2834;
+    border-radius: 30px;
+  }
+  
+  /* Login Page title */
+  .popup h2 {
+    position: absolute;
+    width: 491px;
+    height: 115px;
+    left: 238px;
+    top: 26px;
+    font-family: 'Pretendard';
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 38px;
+    color: #DEDEDE;
+  }
+  
+  /* Username input container */
+  .popup #usernameContainer {
+    position: absolute;
+    width: 355px;
+    height: 50px;
+    left: 238px;
+    top: 151px;
+    background: #FFFFFF;
+    border-radius: 5px;
+  }
+  
+  /* Username label */
+  .popup #usernameLabel {
+    position: absolute;
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 38px;
+    color: #DEDEDE;
+  }
+  
+  /* Username input field */
+  .popup #usernameInput {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 38px;
+    color: #DEDEDE;
+  }
+  
+  /* Password input container */
+  .popup #passwordContainer {
+    position: absolute;
+    width: 355px;
+    height: 50px;
+    left: 238px;
+    top: 216px;
+    background: #FFFFFF;
+    border-radius: 5px;
+  }
+  
+  /* Password label */
+  .popup #passwordLabel {
+    position: absolute;
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 38px;
+    color: #DEDEDE;
+  }
+  
+  /* Password input field */
+  .popup #passwordInput {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 38px;
+    color: #DEDEDE;
+  }
+  
+  /* Login button */
+  .popup #loginButton {
+    position: absolute;
+    width: 115px;
+    height: 115px;
+    left: 601px;
+    top: 151px;
+    background: #FFFFFF;
+    border-radius: 15px;
+    font-family: 'Pretendard';
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #4F4F4F;
+  }
+  
+  /* Register button */
+  .popup #registerButton {
+    position: absolute;
+    width: 115px;
+    height: 50px;
+    left: 238px;
+    top: 281px;
+    background: #FFFFFF;
+    border-radius: 5px;
+    font-family: 'Pretendard';
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #4F4F4F;
+  }
+  

@@ -1,0 +1,126 @@
+/* Frame 2 */
+
+#frame {
+    position: relative;
+    width: 1920px;
+    height: 1020px;
+    background: #FFFFFF;
+  }
+  
+  /* Rectangle 1 */
+  
+  #mainHeader {
+    position: absolute;
+    width: 1920px;
+    height: 180px;
+    left: 0px;
+    top: 0px;
+    background: #1B2834;
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);
+  }
+  
+  /* CPS Logo */
+  
+  #mainCpsLogo {
+    position: absolute;
+    width: 138.88px;
+    height: 58.28px;
+    left: 914px;
+    top: 42px;
+    color: white;
+    font-size: 72px;
+  }
+  
+  /* Rectangle Boxes */
+  
+  .rectangleBox {
+    box-sizing: border-box;
+    position: absolute;
+    width: 270px;
+    height: 270px;
+    background: #FFFFFF;
+    border: 0.5px solid #3F3F3F;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 80px;
+  }
+  
+  #rectangleBox1 { left: 406px; top: 458px; }
+  #rectangleBox2 { left: 866px; top: 458px; }
+  #rectangleBox3 { left: 1326px; top: 458px; }
+  
+  /* Vector */
+  
+  #vector {
+    position: absolute;
+    width: 100px;
+    height: 35px;
+    left: 1775px;
+    top: 130px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 30px; 
+    color: black;
+    
+  }
+  
+  /* Texts */
+  
+  .text {
+    position: absolute;
+    font-family: 'Pretendard';
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+  }
+  
+  #ideText { left: 520px; top: 656px; text-align: center; font-size: 30px; color: #000000;}
+  #problemText { left: 950px; top: 661px; text-align: center; font-size: 30px; color: #000000;}
+  #verificationText { left: 1400px; top: 656px;text-align: center; font-size: 30px; color: #000000; }
+  
+  /* Check Icon */
+  
+  #pcCheckIcon {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    left: 1401px;
+    top: 525px;
+  }
+
+  /* Terminal Icon */
+  
+  #terminalIcon {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    left: 481px;
+    top: 533px;
+  }
+  
+  
+  #userIcon {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 1775px;
+    top: 15px;
+    background: #FFFFFF;
+    border-radius: 10px;
+  }
+  
+  /* Math Symbols Icon */
+  
+  #mathSymbolsIcon {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    left: 941px;
+    top: 525px;
+  }
+  #popup{
+    position: absolute;
+    z-index: 9999;
+  }
+  

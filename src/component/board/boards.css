@@ -1,0 +1,152 @@
+/* Additional CSS styles for the components */
+
+#000container {
+  position: relative;
+  width: 1920px;
+  height: 1020px;
+  background: #FFFFFF;
+
+}
+
+.header {
+  position: absolute;
+  width: 100%;
+  width: 1920px;
+  height: 150px;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  background: #1B2834;
+  box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);
+
+}
+.post a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit; /* 기본 링크 색상으로 설정 */
+}
+
+
+.posts {
+    position: absolute;
+    width: 1870px;
+    left: calc(50% - 1870px/2);
+    top: 250px;
+    padding: 20px;
+    background: #FFFFFF;
+    border: 2px solid #F4F4F4;
+    border-bottom: 1px solid #ddd; /* 각 게시물을 구분하는 선 */
+    text-decoration: none;
+
+  }
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination li {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.pagination li.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+
+.navigation-bar {
+  position: absolute;
+  width: 535px;
+  height: 48px;
+  left: 30px;
+  top: 120px;
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 48px;
+  color: #FFFFFF;
+
+  /* Add styles as needed */
+}
+.navigation-bar a {
+  color: #FFFFFF; /* 링크의 글씨 색상을 하얀색으로 설정합니다. */
+  text-decoration: none; /* 밑줄을 없앱니다. */
+}
+
+.board-list {
+  position: absolute;
+  width: 1800px;
+  height: 33px;
+  left: 60px;
+  top: 918px;
+  /* Add styles as needed */
+}
+
+.buttons {
+  position: absolute;
+  top: 200px;
+  /* Add styles as needed */
+}
+
+.problem-button,
+.board-button,
+.write-button {
+  width: 120px;
+  height: 50px;
+  margin-right: 10px;
+  background: #1B2834;
+  border: 1px solid #C6C6C6;
+  color: #fff;
+  cursor: pointer;
+}
+
+.search-bar {
+  width: 230px;
+  height: 50px;
+  left: 1519px;
+  top: 300px;
+  padding: 10px;
+  border: 1px solid #C6C6C6;
+  border-radius: 5px;
+  margin-right: 10px;
+  /* Add additional styles as needed */
+}
+
+.footer {
+  position: absolute;
+  top: 1300px;
+  background-color: #f5f5f5;
+  padding: 1px;
+  text-align: center;
+  left: 0;
+  bottom: 0;
+  width: 100%; 
+}
+/* Vector */
+
+position: absolute;
+left: 88.75%;
+right: 9.61%;
+top: 25.98%;
+bottom: 70.94%;
+
+background: #909090;
+
+/* Rectangle 17 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 1870px;
+height: 650px;
+left: calc(50% - 1870px/2);
+top: 330px;
+
+background: #FFFFFF;
+border: 2px solid #F4F4F4;

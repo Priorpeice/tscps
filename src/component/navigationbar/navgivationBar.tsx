@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavigationBar, NavigationLink } from '../../styles/naviationBar'; // styles 파일에서 NavigationBar와 NavigationLink import
 
 // NavigationBar 컴포넌트 정의
-const NavigationBar: React.FC = () => {
+const NavigationBarComponent: React.FC = () => {
     return (
-        <div className="navigation-bar">
-            {/* Link 컴포넌트를 사용하여 네비게이션 링크를 생성합니다. */}
-            <Link to="../ide">IDE </Link>
-            <Link to="../Problems">Problems </Link>
-            <Link to="../Verification">Verification</Link>
-        </div>
+        <NavigationBar>
+            {/* NavigationLink 컴포넌트를 사용하여 네비게이션 링크를 생성합니다. */}
+            <NavigationLink to="../ide">IDE </NavigationLink>
+            <NavigationLink to="../Problems"> Problems </NavigationLink>
+            <NavigationLink to="../Verification"> Verification</NavigationLink>
+        </NavigationBar>
     );
 }
 
-export default NavigationBar;
+export default NavigationBarComponent;

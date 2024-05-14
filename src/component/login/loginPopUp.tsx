@@ -3,6 +3,7 @@ import ReactModal from 'react-modal';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './loginform.css';
+import { Vector } from '../../styles/mainStyle';
 
 
 interface ModalButtonProps {
@@ -11,7 +12,7 @@ interface ModalButtonProps {
 
 const ModalButton: React.FC<ModalButtonProps> = ({ openModal }) => {
   return (
-    <button className="vector" id="vector" onClick={openModal}>Sign in</button>
+    <Vector onClick={openModal}>Sign in</Vector>
   );
 };
 
@@ -40,7 +41,7 @@ const LoginPopup: React.FC<LoginContentProps> = ({ isOpen, closeModal }) => {
         memberId: username,
         password: password
       });
-        
+      
       // accessToken과 refreshToken을 로컬 스토리지에 저장
       localStorage.setItem('accessToken', response.data.accessToken);
       localStorage.setItem('refreshToken', response.data.refreshToken);

@@ -5,21 +5,22 @@ import usePagination from '../page/usePagination';
 import ItemList from '../page/ItemList';
 import './boards.css';
 import NavigationBar from '../navigationbar/navgivationBar';
+import { Container, Header } from '../../styles/container';
 
 const Boards: React.FC = () => {
-    const { currentPage, searchTerm, handlePageChange, handleSearchChange, items, postsPerPage } = usePagination('/api/boards');
+    const { currentPage, searchTerm, handlePageChange, handleSearchChange, items, postsPerPage ,totalPages,totalPosts} = usePagination('/api/boards');
 
-    const totalPosts = items.length;
+
     const basePath = '/board';
 
     return (
-        <div className="container">
-            <div className="header">
+        <Container>
+            <Header>
                <NavigationBar/>
                 <Link to="/">
                     <div className="cpsLogo" id="cpsLogo"> CPS </div>
                 </Link>
-            </div>
+            </Header>
             <div className="posts">
                 <input type="text" className="search-bar" placeholder="Search..." value={searchTerm} onChange={handleSearchChange} />
                 <ItemList items={items} basePath={basePath} searchTerm={searchTerm} />
@@ -39,11 +40,12 @@ const Boards: React.FC = () => {
                 <Pagination
                     currentPage={currentPage}
                     totalPosts={totalPosts}
+                    totalPages={totalPages}
                     postsPerPage={postsPerPage}
                     onPageChange={handlePageChange}
                 />
             </div>
-        </div>
+        </Container>
     );
 };
 

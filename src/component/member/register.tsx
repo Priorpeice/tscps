@@ -1,9 +1,12 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
-
+import { Frame, MainHeader, CpsLogo } from '../../styles/mainStyle'; 
+import { InputLabel, InputField,DuplicateCheckButton,SignupFormContainer ,SubmissionButton} from '../../styles/register'; 
+import { Link } from 'react-router-dom';
 interface FormData {
   id: string;
   pw: string;
+  doubleCheckPw: string;
   name: string;
   nickname: string;
   phone: string;
@@ -16,6 +19,7 @@ const SignupForm: React.FC = () => {
     id: '',
     pw: '',
     name: '',
+    doubleCheckPw: '',
     nickname: '',
     phone: '',
     scode: 0,
@@ -38,43 +42,103 @@ const SignupForm: React.FC = () => {
       // 오류 발생 시 사용자에게 알림 등을 추가할 수 있습니다.
     }
   };
-
   return (
-    <div>
-      <h2>회원가입</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="id">아이디:</label>
-          <input type="text" id="id" name="id" value={formData.id} onChange={handleChange} required />
-        </div>
-        <div>
-          <label htmlFor="pw">비밀번호:</label>
-          <input type="password" id="pw" name="pw" value={formData.pw} onChange={handleChange} required />
-        </div>
-        <div>
-          <label htmlFor="name">이름:</label>
-          <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
-        </div>
-        <div>
-          <label htmlFor="nickname">닉네임:</label>
-          <input type="text" id="nickname" name="nickname" value={formData.nickname} onChange={handleChange} />
-        </div>
-        <div>
-          <label htmlFor="phone">전화번호:</label>
-          <input type="text" id="phone" name="phone" value={formData.phone} onChange={handleChange} />
-        </div>
-        <div>
-          <label htmlFor="scode">학번:</label>
-          <input type="number" id="scode" name="scode" value={formData.scode} onChange={handleChange} />
-        </div>
-        <div>
-          <label htmlFor="email">이메일:</label>
-          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
-        </div>
-        <button type="submit">가입하기</button>
-      </form>
-    </div>
-  );
+    <Frame>
+      <MainHeader />
+      <Link to="/">
+      <CpsLogo>CPS</CpsLogo>
+      </Link>
+      <SignupFormContainer>
+        <form onSubmit={handleSubmit}>
+          <InputLabel htmlFor="id" style={{ top: '12vh'}}>아이디</InputLabel>
+          <InputField
+            type="text"
+            id="id"
+            name="id"
+            value={formData.id}
+            onChange={handleChange}
+            required
+            style={{ top: '10vh', left: '12vh' ,width: '27vh'}}
+          />
+          <DuplicateCheckButton style={{ top: '10.5vh' ,left : '42vh'}}>중복확인</DuplicateCheckButton>
+  
+          <InputLabel htmlFor="pw" style={{ top: '18vh' }}>비밀번호</InputLabel>
+          <InputField
+            type="password"
+            id="pw"
+            name="pw"
+            value={formData.pw}
+            onChange={handleChange}
+            required
+            style={{ top: '16vh', left: '12vh' }}
+          />
+          <InputLabel htmlFor="doubleCheckPw" style={{ top: '24vh' }}>비밀번호 확인</InputLabel>
+          <InputField
+            type="password"
+            id="doubleCheckPw"
+            name="doubleCheckPw"
+            value={formData.doubleCheckPw}
+            onChange={handleChange}
+            required
+            style={{ top: '22vh', left: '12vh' }}
+          /> 
+          <InputLabel htmlFor="name" style={{ top: '30vh' }}>이름</InputLabel>
+          <InputField
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            style={{ top: '28vh' , left: '12vh' }}
+          />
+  
+          <InputLabel htmlFor="nickname" style={{ top: '12vh', left: '75vh' }}>닉네임</InputLabel>
+          <InputField
+            type="text"
+            id="nickname"
+            name="nickname"
+            value={formData.nickname}
+            onChange={handleChange}
+            style={{ top: '10vh'  , left: '85vh'}}
+          />
+  
+          <InputLabel htmlFor="phone" style={{ top: '18vh', left: '75vh'  }}>전화번호</InputLabel>
+          <InputField
+            type="text"
+            id="phone"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            style={{ top: '16vh', left: '85vh' }}
+          />
+  
+          <InputLabel htmlFor="scode" style={{ top: '24vh', left: '75vh' }}>학번:</InputLabel>
+          <InputField
+            type="number"
+            id="scode"
+            name="scode"
+            value={formData.scode.toString()}
+            onChange={handleChange}
+            style={{ top: '22vh' , left: '85vh'}}
+          />
+  
+          <InputLabel htmlFor="email" style={{ top: '30vh', left: '75vh' }}>이메일:</InputLabel>
+          <InputField
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            style={{ top: '28vh', left: '85vh' }}
+          />
+  
+        <SubmissionButton type="submit" style={{ position: 'absolute', bottom: '5%', left: '50%', transform: 'translate(-50%, -50%)' }}>가입하기</SubmissionButton>
+        </form>
+      </SignupFormContainer>
+    </Frame>
+  );  
 };
 
 export default SignupForm;

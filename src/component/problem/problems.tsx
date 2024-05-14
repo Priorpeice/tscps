@@ -6,10 +6,10 @@ import ItemList from '../page/ItemList';
 import NavigationBar from '../navigationbar/navgivationBar';
 
 const Problems: React.FC = () => {
-    const { currentPage, searchTerm, handlePageChange, handleSearchChange, items ,postsPerPage} = usePagination('/api/problems'); // usePagination hook usage
+    const { currentPage, searchTerm, handlePageChange, handleSearchChange, items ,postsPerPage,totalPages,totalPosts} = usePagination('/api/problems'); // usePagination hook usage
 
     // renderItems 함수에서 반환되는 아이템의 개수를 totalPosts로 전달
-    const totalPosts = items.length;
+
     const basePath = '/problem';
 
     return (
@@ -40,6 +40,7 @@ const Problems: React.FC = () => {
                 <Pagination
                     currentPage={currentPage}
                     totalPosts={totalPosts} // totalPosts prop 전달
+                    totalPages={totalPages}
                     onPageChange={handlePageChange}
                     postsPerPage={postsPerPage}
                 />

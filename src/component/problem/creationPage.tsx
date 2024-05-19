@@ -8,7 +8,7 @@ const CreateProblemPage: React.FC = () => {
     const [inputs, setInputs] = useState<string[]>(['']);
     const [outputs, setOutputs] = useState<string[]>(['']);
     const [isForbidden, setIsForbidden] = useState(false);
-
+    const accessToken: string | null = localStorage.getItem('accessToken');
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
@@ -17,7 +17,13 @@ const CreateProblemPage: React.FC = () => {
                 content,
                 inputs,
                 outputs
-            });
+            },
+            {
+                headers: {
+                  Authorization: `Bearer ${accessToken}`
+                }
+              }
+        );
             alert(`게시되었습니다!${response}`);
             // Optionally, redirect to another page or show a success message
         } catch (error:any) {

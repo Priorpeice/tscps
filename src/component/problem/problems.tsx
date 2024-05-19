@@ -6,9 +6,9 @@ import ItemList from '../page/ItemList';
 import NavigationBar from '../navigationbar/navgivationBar';
 
 const Problems: React.FC = () => {
-    const { currentPage, searchTerm, handlePageChange, handleSearchChange, items ,postsPerPage,totalPages,totalPosts} = usePagination('/api/problems'); // usePagination hook usage
+    const { currentPage, searchTerm, handlePageChange, handleSearchChange, handleSearchClick,items ,postsPerPage,totalPages,totalPosts} = usePagination('/api/problems','/api/problems/search'); // usePagination hook usage
 
-    // renderItems 함수에서 반환되는 아이템의 개수를 totalPosts로 전달
+   
 
     const basePath = '/problem';
 
@@ -21,10 +21,10 @@ const Problems: React.FC = () => {
                 </Link>
             </div>
             <div className="posts">
-                <input type="text" className="search-bar" placeholder="Search..." value={searchTerm} onChange={handleSearchChange} />
-                <ItemList items={items} basePath={basePath} searchTerm={searchTerm} />
-            </div>
-            {/* Buttons */}
+            <input type="text" className="search-bar" placeholder="Search..." value={searchTerm} onChange={handleSearchChange} />
+                <button className="search-button" onClick={handleSearchClick}>Search</button> {/* 검색 버튼 추가 */}
+                <ItemList items={items} basePath={basePath} searchTerm={searchTerm} /> </div>
+           
             <div className="buttons">
                 <Link to="../problems">
                     <button className="problem-button">Problem</button>

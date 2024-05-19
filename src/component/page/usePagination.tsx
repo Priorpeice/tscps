@@ -6,51 +6,42 @@ interface PaginationData {
   searchTerm: string;
   handlePageChange: (pageNumber: number) => void;
   handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  items: any[]; // Adjust the type of items according to your data structure
+  handleSearchClick: () => void;
+  items: any[]; 
   postsPerPage: number;
   totalPosts: number; 
   totalPages: number;
 }
 
-const usePagination = (apiUrl: string): PaginationData => {
+const usePagination = (apiUrl: string, searchApiUrl: string): PaginationData => {
   const [items, setItems] = useState<any[]>([]); // Adjust the type according to your data structure
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [postsPerPage, setPostsPerPage] = useState<number>(10);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [totalPosts, setTotalPosts] = useState<number>(0); 
   const [totalPages, setTotalPages] = useState<number>(0); 
-  const fetchData = async () => {
+  
+  const fetchData = async (page: number, term: string) => {
     try {
-      const response = await axios.get(apiUrl, {
+      const response = await axios.get(term ? searchApiUrl : apiUrl, {
         params: {
-          page: currentPage, // 현재 페이지 번호
-          pageSize: postsPerPage // 페이지당 아이템 수
+          page: page,
+          pageSize: postsPerPage,
+          ...(term && { title: term })
         }
       });
-      console.log(response.data)
+      console.log(response.data);
       setItems(response.data.object.content);
-      setTotalPosts(response.data.object.pageinfo.listCount)
-      setTotalPages(response.data.object.pageinfo.maxPage)
-     
+      setTotalPosts(response.data.object.pageinfo.listCount);
+      setTotalPages(response.data.object.pageinfo.maxPage);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('데이터를 가져오는 중 오류 발생:', error);
     }
   };
   useEffect(() => {
-    
-   
-    if (currentPage === 0) {
-      fetchData();
-    }
-    
-  }, [apiUrl, currentPage, postsPerPage]);
+    fetchData(currentPage, searchTerm);
+  }, [apiUrl, searchApiUrl, currentPage, postsPerPage]);
 
-  useEffect(() => {
-    // currentPage가 0이 아니고 postsPerPage가 0이 아닐 때만 요청
-    if (currentPage !== 0 && postsPerPage !== 0) {
-      fetchData();
-    }
-  }, [currentPage]);
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -60,11 +51,17 @@ const usePagination = (apiUrl: string): PaginationData => {
     setSearchTerm(event.target.value);
   };
 
+  const handleSearchClick = () => {
+    setCurrentPage(0);
+    fetchData(0, searchTerm);
+  };
+
   return {
     currentPage,
     searchTerm,
     handlePageChange,
     handleSearchChange,
+    handleSearchClick,
     items,
     postsPerPage,
     totalPages,

@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import Pagination from '../page/pagination';
 import usePagination from '../page/usePagination';
 import ItemList from '../page/ItemList';
-import './boards.css';
+// import './boards.css';
 import NavigationBar from '../navigationbar/navgivationBar';
 import { Container, Header } from '../../styles/container';
+import {  Posts, Buttons, Button, SearchBar } from '../../styles/postList';
+import { Footer } from '../../styles/footer';
 
 const Boards: React.FC = () => {
     const { currentPage, searchTerm, handlePageChange, handleSearchChange, handleSearchClick, items, postsPerPage ,totalPages,totalPosts} = usePagination('/api/boards','/api/boards/search');
@@ -21,22 +23,22 @@ const Boards: React.FC = () => {
                     <div className="cpsLogo" id="cpsLogo"> CPS </div>
                 </Link>
             </Header>
-            <div className="posts">
-                <input type="text" className="search-bar" placeholder="Search..." value={searchTerm} onChange={handleSearchChange} />
-                <button className="search-button" onClick={handleSearchClick}>Search</button> 
-                <ItemList items={items} basePath={basePath} searchTerm={searchTerm} />  </div>
-            <div className="buttons">
+            <Posts>
+            <SearchBar type="text" placeholder="Search..." value={searchTerm} onChange={handleSearchChange}/>
+                <ItemList items={items} basePath={basePath} searchTerm={searchTerm} />  </Posts>
+            <Buttons>
+                <Button onClick={handleSearchClick}>Search</Button> 
                 <Link to="../problems">
-                    <button className="problem-button">Problem</button>
+                    <Button className="problem-button">Problem</Button>
                 </Link>
                 <Link to="../boards">
-                    <button className="board-button">Board</button>
+                    <Button className="board-button">Board</Button>
                 </Link>
                 <Link to="../board/write">
-                    <button className="write-button">Write</button>
+                    <Button className="write-button">Write</Button>
                 </Link>
-            </div>
-            <div className="footer">
+            </Buttons>
+            <Footer>
                 <Pagination
                     currentPage={currentPage}
                     totalPosts={totalPosts}
@@ -44,7 +46,7 @@ const Boards: React.FC = () => {
                     postsPerPage={postsPerPage}
                     onPageChange={handlePageChange}
                 />
-            </div>
+            </Footer>
         </Container>
     );
 };

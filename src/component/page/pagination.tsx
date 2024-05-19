@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { PaginationStyle,PaginationItem,PostAnchor } from '../../styles/postList';
 interface Props {
   currentPage: number;
   totalPosts: number;
@@ -21,15 +21,15 @@ const Pagination: React.FC<Props> = ({ currentPage, totalPosts, totalPages, post
 
   return (
     <nav>
-      <ul className="pagination">
+      <PaginationStyle>
         {pageNumbers.map((number) => (
-          <li key={number} className={number === currentPage+1 ? 'active' : ''}>
-            <a href="javascript:void(0)" onClick={() => onPageChange(number-1)}>
+          <PaginationItem key={number} className={number === currentPage+1 ? 'active' : ''}>
+            <PostAnchor href="javascript:void(0)" onClick={() => onPageChange(number-1)}>
               {number}
-            </a>
-          </li>
+            </PostAnchor>
+          </PaginationItem>
         ))}
-      </ul>
+      </PaginationStyle>
     </nav>
   );
 };

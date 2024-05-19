@@ -4,6 +4,10 @@ import Pagination from '../page/pagination';
 import usePagination from '../page/usePagination'; // usePagination hook import
 import ItemList from '../page/ItemList';
 import NavigationBar from '../navigationbar/navgivationBar';
+import { Container, Header } from '../../styles/container';
+import {  Posts, Buttons, Button, SearchBar } from '../../styles/postList';
+import { Footer } from '../../styles/footer';
+
 
 const Problems: React.FC = () => {
     const { currentPage, searchTerm, handlePageChange, handleSearchChange, handleSearchClick,items ,postsPerPage,totalPages,totalPosts} = usePagination('/api/problems','/api/problems/search'); // usePagination hook usage
@@ -13,39 +17,38 @@ const Problems: React.FC = () => {
     const basePath = '/problem';
 
     return (
-        <div className="container">
-            <div className="header">
-                <NavigationBar />
+        <Container>
+            <Header>
+               <NavigationBar/>
                 <Link to="/">
                     <div className="cpsLogo" id="cpsLogo"> CPS </div>
                 </Link>
-            </div>
-            <div className="posts">
-            <input type="text" className="search-bar" placeholder="Search..." value={searchTerm} onChange={handleSearchChange} />
-                <button className="search-button" onClick={handleSearchClick}>Search</button> {/* 검색 버튼 추가 */}
-                <ItemList items={items} basePath={basePath} searchTerm={searchTerm} /> </div>
-           
-            <div className="buttons">
+            </Header>
+            <Posts>
+            <SearchBar type="text" placeholder="Search..." value={searchTerm} onChange={handleSearchChange}/>
+                <ItemList items={items} basePath={basePath} searchTerm={searchTerm} />  </Posts>
+            <Buttons>
+                <Button onClick={handleSearchClick}>Search</Button> 
                 <Link to="../problems">
-                    <button className="problem-button">Problem</button>
+                    <Button className="problem-button">Problem</Button>
                 </Link>
                 <Link to="../boards">
-                    <button className="board-button">Board</button>
+                    <Button className="board-button">Board</Button>
                 </Link>
-                <Link to="../problem/write">
-                    <button className="write-button">Write</button>
+                <Link to="../board/write">
+                    <Button className="write-button">Write</Button>
                 </Link>
-            </div>
-            <div className="footer">
+            </Buttons>
+            <Footer>
                 <Pagination
                     currentPage={currentPage}
-                    totalPosts={totalPosts} // totalPosts prop 전달
+                    totalPosts={totalPosts}
                     totalPages={totalPages}
-                    onPageChange={handlePageChange}
                     postsPerPage={postsPerPage}
+                    onPageChange={handlePageChange}
                 />
-            </div>
-        </div>
+            </Footer>
+        </Container>
     );
 };
 

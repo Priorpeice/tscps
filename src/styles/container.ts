@@ -8,7 +8,7 @@ height: auto;
 background: #FFFFFF;
   `
 export const Header =styled.div `
-position: absolute;
+position: relative;
 width: 100%;
 height: 13vh; 
 top: 0;

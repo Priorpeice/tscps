@@ -89,12 +89,12 @@
 }
 
 .buttons {
-  position: absolute;
-  top: 200px;
+  position: relative;
+  top: 22vh;
   left: 35vh;
   /* Add styles as needed */
 }
-
+.search-button,
 .problem-button,
 .board-button,
 .write-button {
@@ -109,10 +109,10 @@
 
 
 .search-bar {
-  width: 230px;
-  height: 50px;
-  left: 150px;
-  top: 300px;
+  width: 23vh;
+  height: 5vh;
+  left: 15vh;
+  top: 30vh;
   padding: 10px;
   border: 1px solid #C6C6C6;
   border-radius: 5px;

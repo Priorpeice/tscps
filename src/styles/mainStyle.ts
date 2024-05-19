@@ -9,7 +9,7 @@ export const Frame = styled.div`
 `;
 
 export const MainHeader = styled.div`
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 18.75vh;
   left: 0px;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { PostLink} from '../../styles/postList'
 interface Item {
   id: string;
   title: string;
@@ -19,9 +19,9 @@ const ItemList: React.FC<Props> = ({ items, basePath, searchTerm }) => {
     <div>
       {filteredItems.map((item, index) => (
         <div className="post" key={item.id}>
-          <Link to={`${basePath}/${item.id}`}> {/* basePath를 사용하여 동적으로 경로를 생성 */}
+          <PostLink to={`${basePath}/${item.id}`}> {/* basePath를 사용하여 동적으로 경로를 생성 */}
             <h3>{item.id} {item.title}</h3>
-          </Link>
+          </PostLink>
           {index !== filteredItems.length - 1 && <hr />}
         </div>
       ))}

@@ -36,7 +36,7 @@ const MainPage: React.FC = () => {
       <Link to="/problems">
         <ProblemText>Problem</ProblemText>
       </Link>
-      <Link to="/another-page">
+      <Link to="/verification">
         <VerificationText>verification</VerificationText>
       </Link>
       {/* 아이콘 이미지 */}

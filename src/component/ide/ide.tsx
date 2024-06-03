@@ -1,23 +1,34 @@
+// src/component/ide/ide.tsx
+
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import CompileLanguageSelect from '../CompileLanguageSelect';
 import CodeEditor from '../CodeEditor';
+import CompileLanguageSelect from '../CompileLanguageSelect';
+import { handleCompileSubmit, handleCompileChange } from '../../handler/formHandler';
+import { CompileForm } from '../../interface/compile';
+import NavigationBar from '../navigationbar/navgivationBar';
+import { Logo,LogoLink } from '../../styles/logo';
 import InputBox from '../InputBox';
-import { handleCompileSubmit, handleCompileChange } from '../../handler/formHandler'; // Removed unnecessary imports
-import './ide.css';
+import { Container,Header } from '../../styles/container';
+import { Label } from '../../styles/inputBox';
+import {
+  PageContainer,
+  IdeHeader,
+  Content,
+  CompileLanguageContainer,
+  CodeEditorContainer,
+  InputOutputContainer,
+  Panel,
+  CompileButton,
+  CompilationResult,
+  Footer,
+} from '../../styles/ide';
 
-interface CompileForm {
-  language: string;
-  code: string;
-  input?: string;
-}
-
-interface Props {
+interface IDEPageProps {
   initialRows?: number;
   initialCompileForm?: CompileForm;
 }
 
-const IDEPage: React.FC<Props> = ({ initialRows, initialCompileForm }) => {
+const IDEPage: React.FC<IDEPageProps> = ({ initialRows, initialCompileForm }) => {
   const [compileForm, setCompileForm] = useState<CompileForm>(
     initialCompileForm || {
       language: 'java',
@@ -25,11 +36,19 @@ const IDEPage: React.FC<Props> = ({ initialRows, initialCompileForm }) => {
       input: '',
     }
   );
+  const [compilationResult, setCompilationResult] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const navigate = useNavigate();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    handleCompileSubmit(e, compileForm, (result) => {
+      setCompilationResult(result);
+      setLoading(false);
+    });
+  };
 
   useEffect(() => {
-    // Update compileForm when initialCompileForm changes
     setCompileForm(
       initialCompileForm || {
         language: 'java',
@@ -37,7 +56,7 @@ const IDEPage: React.FC<Props> = ({ initialRows, initialCompileForm }) => {
         input: '',
       }
     );
-  }, [initialCompileForm]);
+  }, [initialCompileForm, compilationResult]);
 
   const languageOptions = [
     { value: 'java', label: 'Java' },
@@ -49,30 +68,56 @@ const IDEPage: React.FC<Props> = ({ initialRows, initialCompileForm }) => {
   ];
 
   return (
-    <div className="idePage" id="idePage">
-      <div className="header" id="header"></div>
-      <Link to="/">
-        <div className="cpsLogo" id="cpsLogo"> CPS </div>
-      </Link>
-      <div className="vectorGroup"></div>
-      <form onSubmit={(e) => handleCompileSubmit(e, compileForm, navigate)}>
-        <CompileLanguageSelect
-          languageOptions={languageOptions}
-          handleCompileChange={(e:any) => handleCompileChange(e, compileForm, setCompileForm)}
-          value={compileForm.language}
-        />
-        <CodeEditor
-          compileForm={compileForm}
-          setCompileForm={setCompileForm}
-        />
-        <InputBox
-          compileForm={compileForm}
-          handleCompileChange={(e:any) => handleCompileChange(e, compileForm, setCompileForm)}
-        />
-        <input type="submit" value="Compile" className="button" />
-      </form>
-      <div className="footer" id="footer"></div>
-    </div>
+    <PageContainer>
+      <Header>
+        <NavigationBar />
+        <LogoLink to="/">
+          <Logo>CPS</Logo>
+        </LogoLink >
+      </Header>
+      <Content>
+        <form onSubmit={handleSubmit} style={{ width: '100%', height: '100%' }}>
+          <CompileLanguageContainer>
+            <CompileLanguageSelect
+              languageOptions={languageOptions}
+              handleCompileChange={(e:any) => handleCompileChange(e, compileForm, setCompileForm)}
+              value={compileForm.language}
+            />
+            <CompileButton type="submit">Run</CompileButton>
+          </CompileLanguageContainer>
+          <Content>
+            <CodeEditorContainer>
+              <CodeEditor
+                compileForm={compileForm}
+                setCompileForm={setCompileForm}
+                style={{ width: '100%', height: '700px' }}
+              />
+            </CodeEditorContainer>
+            <InputOutputContainer>
+              <Panel>
+                <InputBox
+                  compileForm={compileForm}
+                  handleCompileChange={(e:any) => handleCompileChange(e, compileForm, setCompileForm)}
+                />
+              </Panel>
+              <Panel>
+              <Label htmlFor="compilationResult">Compilation Output:</Label>
+                <CompilationResult id="compilationResult">
+                  {loading && <p>Loading...</p>}
+                  {!loading && compilationResult && (
+                    <>
+                      <h3>Compilation Result:</h3>
+                      <pre>{compilationResult}</pre>
+                    </>
+                  )}
+                </CompilationResult>
+              </Panel>
+            </InputOutputContainer>
+          </Content>
+        </form>
+      </Content>
+      <Footer />
+    </PageContainer>
   );
 };
 

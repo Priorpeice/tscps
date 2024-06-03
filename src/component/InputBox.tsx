@@ -1,10 +1,6 @@
 import React from 'react';
-
-interface CompileForm {
-  language: string;
-  code: string;
-  input?: string;
-}
+import { CompileForm } from '../interface/compile';
+import { Container, InputBoxWrapper, Label, TextArea } from '../styles/inputBox';
 
 interface Props {
   compileForm: CompileForm;
@@ -13,21 +9,18 @@ interface Props {
 
 const InputBox: React.FC<Props> = ({ compileForm, handleCompileChange }) => {
   return (
-    <div>
+    <Container>
       <div className="line"></div>
-      <div className="inputBox" id="inputBox">
-        <label htmlFor="input" className="inputLabel">Enter input</label>
-        <br />
-        <textarea
+      <InputBoxWrapper id="inputBox">
+        <Label htmlFor="input">Enter input</Label>
+        <TextArea
           name="input"
-          rows={5}
-          cols={50}
           value={compileForm.input}
           onChange={handleCompileChange}
-        ></textarea>
-      </div>
+        />
+      </InputBoxWrapper>
       <br />
-    </div>
+    </Container>
   );
 };
 

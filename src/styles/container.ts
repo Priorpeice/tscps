@@ -6,6 +6,8 @@ width: 100%;
 max-width: 1920px;
 height: auto;
 background: #FFFFFF;
+
+
   `
 export const Header =styled.div `
 position: relative;

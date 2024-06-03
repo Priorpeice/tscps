@@ -1,18 +1,18 @@
+// src/component/auth/SignupForm.tsx
+
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
-import { Frame, MainHeader, CpsLogo } from '../../styles/mainStyle'; 
-import { InputLabel, InputField,DuplicateCheckButton,SignupFormContainer ,SubmissionButton} from '../../styles/register'; 
 import { Link } from 'react-router-dom';
-interface FormData {
-  id: string;
-  pw: string;
-  doubleCheckPw: string;
-  name: string;
-  nickname: string;
-  phone: string;
-  scode: number;
-  email: string;
-}
+import { Frame,MainHeader,CpsLogo } from '../../styles/mainStyle';
+import {
+  RegisterContainer,
+  SignupFormContainer,
+  InputLabel,
+  InputField,
+  DuplicateCheckButton,
+  SubmissionButton
+} from '../../styles/register';
+import { FormData } from '../../interface/memberForm';
 
 const SignupForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -42,15 +42,17 @@ const SignupForm: React.FC = () => {
       // 오류 발생 시 사용자에게 알림 등을 추가할 수 있습니다.
     }
   };
+
   return (
     <Frame>
       <MainHeader />
       <Link to="/">
-      <CpsLogo>CPS</CpsLogo>
+        <CpsLogo>CPS</CpsLogo>
       </Link>
+      <RegisterContainer>
       <SignupFormContainer>
         <form onSubmit={handleSubmit}>
-          <InputLabel htmlFor="id" style={{ top: '12vh'}}>아이디</InputLabel>
+          <InputLabel htmlFor="id">아이디</InputLabel>
           <InputField
             type="text"
             id="id"
@@ -58,11 +60,10 @@ const SignupForm: React.FC = () => {
             value={formData.id}
             onChange={handleChange}
             required
-            style={{ top: '10vh', left: '12vh' ,width: '27vh'}}
           />
-          <DuplicateCheckButton style={{ top: '10.5vh' ,left : '42vh'}}>중복확인</DuplicateCheckButton>
-  
-          <InputLabel htmlFor="pw" style={{ top: '18vh' }}>비밀번호</InputLabel>
+          <DuplicateCheckButton>중복확인</DuplicateCheckButton>
+
+          <InputLabel htmlFor="pw">비밀번호</InputLabel>
           <InputField
             type="password"
             id="pw"
@@ -70,9 +71,8 @@ const SignupForm: React.FC = () => {
             value={formData.pw}
             onChange={handleChange}
             required
-            style={{ top: '16vh', left: '12vh' }}
           />
-          <InputLabel htmlFor="doubleCheckPw" style={{ top: '24vh' }}>비밀번호 확인</InputLabel>
+          <InputLabel htmlFor="doubleCheckPw">비밀번호 확인</InputLabel>
           <InputField
             type="password"
             id="doubleCheckPw"
@@ -80,9 +80,8 @@ const SignupForm: React.FC = () => {
             value={formData.doubleCheckPw}
             onChange={handleChange}
             required
-            style={{ top: '22vh', left: '12vh' }}
-          /> 
-          <InputLabel htmlFor="name" style={{ top: '30vh' }}>이름</InputLabel>
+          />
+          <InputLabel htmlFor="name">이름</InputLabel>
           <InputField
             type="text"
             id="name"
@@ -90,40 +89,36 @@ const SignupForm: React.FC = () => {
             value={formData.name}
             onChange={handleChange}
             required
-            style={{ top: '28vh' , left: '12vh' }}
           />
-  
-          <InputLabel htmlFor="nickname" style={{ top: '12vh', left: '75vh' }}>닉네임</InputLabel>
+
+          <InputLabel htmlFor="nickname">닉네임</InputLabel>
           <InputField
             type="text"
             id="nickname"
             name="nickname"
             value={formData.nickname}
             onChange={handleChange}
-            style={{ top: '10vh'  , left: '85vh'}}
           />
-  
-          <InputLabel htmlFor="phone" style={{ top: '18vh', left: '75vh'  }}>전화번호</InputLabel>
+
+          <InputLabel htmlFor="phone">전화번호</InputLabel>
           <InputField
             type="text"
             id="phone"
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            style={{ top: '16vh', left: '85vh' }}
           />
-  
-          <InputLabel htmlFor="scode" style={{ top: '24vh', left: '75vh' }}>학번:</InputLabel>
+
+          <InputLabel htmlFor="scode">학번:</InputLabel>
           <InputField
             type="number"
             id="scode"
             name="scode"
             value={formData.scode.toString()}
             onChange={handleChange}
-            style={{ top: '22vh' , left: '85vh'}}
           />
-  
-          <InputLabel htmlFor="email" style={{ top: '30vh', left: '75vh' }}>이메일:</InputLabel>
+
+          <InputLabel htmlFor="email">이메일:</InputLabel>
           <InputField
             type="email"
             id="email"
@@ -131,14 +126,14 @@ const SignupForm: React.FC = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            style={{ top: '28vh', left: '85vh' }}
           />
-  
-        <SubmissionButton type="submit" style={{ position: 'absolute', bottom: '5%', left: '50%', transform: 'translate(-50%, -50%)' }}>가입하기</SubmissionButton>
+
+          <SubmissionButton type="submit">가입하기</SubmissionButton>
         </form>
       </SignupFormContainer>
+      </RegisterContainer>
     </Frame>
-  );  
+  );
 };
 
 export default SignupForm;

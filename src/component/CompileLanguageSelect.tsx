@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-
+import { Select,Option,SelectWrapper } from '../styles/selectBar';
 interface Option {
   value: string;
   label: string;
@@ -14,16 +14,18 @@ interface Props {
 const CompileLanguageSelect: React.FC<Props> = ({ languageOptions, handleCompileChange, value }) => (
   <div id="compileLanguageContainer">
     <label htmlFor="compileLanguage">Select Language:</label>
-    <select
-      name="language"
-      id="compileLanguage"
-      onChange={handleCompileChange}
-      value={value}
-    >
-      {languageOptions && languageOptions.map(option => (
-        <option key={option.value} value={option.value}>{option.label}</option>
-      ))}
-    </select>
+    <SelectWrapper>
+      <Select
+        name="language"
+        id="compileLanguage"
+        onChange={handleCompileChange}
+        value={value}
+      >
+        {languageOptions && languageOptions.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    </SelectWrapper>
   </div>
 );
 

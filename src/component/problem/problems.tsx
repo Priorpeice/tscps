@@ -5,9 +5,9 @@ import usePagination from '../page/usePagination'; // usePagination hook import
 import ItemList from '../page/ItemList';
 import NavigationBar from '../navigationbar/navgivationBar';
 import { Container, Header } from '../../styles/container';
-import {  Posts, Buttons, Button, SearchBar } from '../../styles/postList';
+import {  Posts, Buttons, Button, SearchBar,SearchBarAndButton } from '../../styles/postList';
 import { Footer } from '../../styles/footer';
-
+import { Logo,LogoLink } from '../../styles/logo';
 
 const Problems: React.FC = () => {
     const { currentPage, searchTerm, handlePageChange, handleSearchChange, handleSearchClick,items ,postsPerPage,totalPages,totalPosts} = usePagination('/api/problems','/api/problems/search'); // usePagination hook usage
@@ -20,25 +20,29 @@ const Problems: React.FC = () => {
         <Container>
             <Header>
                <NavigationBar/>
-                <Link to="/">
-                    <div className="cpsLogo" id="cpsLogo"> CPS </div>
-                </Link>
+               <LogoLink to="/">
+                    <Logo>CPS</Logo>
+                </LogoLink >
             </Header>
             <Posts>
-            <SearchBar type="text" placeholder="Search..." value={searchTerm} onChange={handleSearchChange}/>
-                <ItemList items={items} basePath={basePath} searchTerm={searchTerm} />  </Posts>
-            <Buttons>
-                <Button onClick={handleSearchClick}>Search</Button> 
-                <Link to="../problems">
-                    <Button className="problem-button">Problem</Button>
-                </Link>
-                <Link to="../boards">
-                    <Button className="board-button">Board</Button>
-                </Link>
-                <Link to="../board/write">
-                    <Button className="write-button">Write</Button>
-                </Link>
-            </Buttons>
+                <SearchBarAndButton>
+                    <SearchBar type="text" placeholder="Search..." value={searchTerm} onChange={handleSearchChange}/>
+                    <Buttons>
+                    <Button onClick={handleSearchClick}>Search</Button> 
+                        <Link to="../problems">
+                            <Button className="problem-button">Problem</Button>
+                        </Link>
+                        <Link to="../boards">
+                            <Button className="board-button">Board</Button>
+                        </Link>
+                        <Link to="../problem/write">
+                            <Button className="write-button">Write</Button>
+                        </Link>
+                    </Buttons>
+                </SearchBarAndButton>
+                <ItemList items={items} basePath={basePath} searchTerm={searchTerm} />  
+            </Posts>
+            
             <Footer>
                 <Pagination
                     currentPage={currentPage}

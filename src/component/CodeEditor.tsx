@@ -1,4 +1,5 @@
-// CodeEditor.tsx
+// src/component/CodeEditor.tsx
+
 import React from 'react';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/theme-monokai';
@@ -17,9 +18,10 @@ interface Props {
     language: string;
     code: string;
   }>>;
+  style?: React.CSSProperties; // Add style prop
 }
 
-const CodeEditor: React.FC<Props> = ({ compileForm, setCompileForm }) => {
+const CodeEditor: React.FC<Props> = ({ compileForm, setCompileForm, style }) => {
   const handleEditorChange = (value: string) => {
     setCompileForm((prevForm) => ({ ...prevForm, code: value }));
   };
@@ -58,28 +60,27 @@ const CodeEditor: React.FC<Props> = ({ compileForm, setCompileForm }) => {
   };
 
   return (
-    <div className="idePage" id="idePage">
-      <AceEditor
-        mode={getAceMode(compileForm.language)}
-        theme={getAceTheme(compileForm.language)}
-        name="codeTextArea"
-        editorProps={{ $blockScrolling: true }}
-        value={compileForm.code}
-        onChange={handleEditorChange}
-        fontSize={14}
-        showPrintMargin={true}
-        showGutter={true}
-        highlightActiveLine={true}
-        setOptions={{
-          useWorker: false,
-          enableBasicAutocompletion: false,
-          enableLiveAutocompletion: false,
-          enableSnippets: false,
-          showLineNumbers: true,
-          tabSize: 2,
-        }}
-      />
-    </div>
+    <AceEditor
+      mode={getAceMode(compileForm.language)}
+      theme={getAceTheme(compileForm.language)}
+      name="codeTextArea"
+      editorProps={{ $blockScrolling: true }}
+      value={compileForm.code}
+      onChange={handleEditorChange}
+      fontSize={14}
+      showPrintMargin={true}
+      showGutter={true}
+      highlightActiveLine={true}
+      setOptions={{
+        useWorker: false,
+        enableBasicAutocompletion: false,
+        enableLiveAutocompletion: false,
+        enableSnippets: false,
+        showLineNumbers: true,
+        tabSize: 2,
+      }}
+      style={style} // Apply the style prop
+    />
   );
 };
 

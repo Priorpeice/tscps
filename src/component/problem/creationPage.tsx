@@ -1,6 +1,12 @@
+// src/component/problem/CreateProblemPage.tsx
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import ForbiddenRedirect from '../../handler/forbiddenRedirect';
+import { CreationContainer, Form, FormGroup, Label, Input, Textarea, Button, AddButton } from '../../styles/Creation';
+import { Container,Header } from '../../styles/container';
+import NavigationBar from '../navigationbar/navgivationBar';
+import { Logo,LogoLink } from '../../styles/logo';
 
 const CreateProblemPage: React.FC = () => {
     const [title, setTitle] = useState<string>('');
@@ -9,6 +15,7 @@ const CreateProblemPage: React.FC = () => {
     const [outputs, setOutputs] = useState<string[]>(['']);
     const [isForbidden, setIsForbidden] = useState(false);
     const accessToken: string | null = localStorage.getItem('accessToken');
+    
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
@@ -65,48 +72,56 @@ const CreateProblemPage: React.FC = () => {
     };
 
     return (
-        <div>
+        <Container>
+        <Header>
+        <NavigationBar/>
+        <LogoLink to="/">
+          <Logo>CPS</Logo>
+        </LogoLink>
+      </Header>
+        <CreationContainer>
             <h2>Create New Problem</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Title:</label>
-                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
-                </div>
-                <div>
-                    <label>Content:</label>
-                    <textarea value={content} onChange={(e) => setContent(e.target.value)} required />
-                </div>
-                <div>
-                    <label>Inputs:</label>
+            <Form onSubmit={handleSubmit}>
+                <FormGroup>
+                    <Label>Title:</Label>
+                    <Input type="text" value={title} onChange={(e:any) => setTitle(e.target.value)} required />
+                </FormGroup>
+                <FormGroup>
+                    <Label>Content:</Label>
+                    <Textarea value={content} onChange={(e:any) => setContent(e.target.value)} required />
+                </FormGroup>
+                <FormGroup>
+                    <Label>Inputs:</Label>
                     {inputs.map((input, index) => (
-                        <input
+                        <Input
                             key={index}
                             type="text"
                             name="input"
                             value={input}
-                            onChange={(e) => handleInputChange(index, e)}
+                            onChange={(e:any) => handleInputChange(index, e)}
                             required
                         />
                     ))}
-                    <button type="button" onClick={() => handleAddInputOutput('input')}>Add Input</button>
-                </div>
-                <div>
-                    <label>Outputs:</label>
+                    <AddButton type="button" onClick={() => handleAddInputOutput('input')}>Add Input</AddButton>
+                </FormGroup>
+                <FormGroup>
+                    <Label>Outputs:</Label>
                     {outputs.map((output, index) => (
-                        <input
+                        <Input
                             key={index}
                             type="text"
                             name="output"
                             value={output}
-                            onChange={(e) => handleInputChange(index, e)}
+                            onChange={(e:any) => handleInputChange(index, e)}
                             required
                         />
                     ))}
-                    <button type="button" onClick={() => handleAddInputOutput('output')}>Add Output</button>
-                </div>
-                <button type="submit">Create Problem</button>
-            </form>
-        </div>
+                    <AddButton type="button" onClick={() => handleAddInputOutput('output')}>Add Output</AddButton>
+                </FormGroup>
+                <Button type="submit">Create Problem</Button>
+            </Form>
+        </CreationContainer>
+        </Container>
     );
 };
 

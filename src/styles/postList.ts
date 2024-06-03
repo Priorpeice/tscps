@@ -47,18 +47,17 @@ export const PaginationItem = styled.li`
 `;
 
 export const BoardList = styled.div`
-  position: absolute;
-  width: 1800px;
-  height: 33px;
-  left: 60px;
-  top: 918px;
-  /* Add styles as needed */
+  position: relative;
+  width: 93.75vw; 
+  height: 1.71vh; 
+  left: 3.125vw; 
+  top: 85vh; 
+ 
 `;
 
 export const Buttons = styled.div`
-  position: relative;
-  top: 22vh;
-  left: 35vh;
+    display: flex;
+    gap: 1.07vh;
 `;
 
 export const Button = styled.button`
@@ -80,6 +79,11 @@ export const SearchBar = styled.input`
   border: 1px solid #C6C6C6;
   border-radius: 5px;
   margin-right: 10px;
-  /* Add additional styles as needed */
+ 
 `;
-
+export const SearchBarAndButton = styled.div`
+display: flex;
+align-items: center;
+margin-bottom: 1rem; 
+gap: 1rem; 
+`;

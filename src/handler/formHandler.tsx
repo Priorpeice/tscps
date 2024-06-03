@@ -1,5 +1,4 @@
 import { SyntheticEvent } from 'react';
-import { NavigateFunction } from 'react-router-dom';
 
 interface CompileForm {
   language: string;
@@ -10,7 +9,7 @@ interface CompileForm {
 export const handleCompileSubmit = async (
   e: SyntheticEvent,
   compileForm: CompileForm,
-  navigate: NavigateFunction
+  setCompilationResult: React.Dispatch<React.SetStateAction<string | null>>
 ) => {
   e.preventDefault();
 
@@ -29,13 +28,15 @@ export const handleCompileSubmit = async (
 
     if (response.ok) {
       const data = await response.json();
-      console.log('컴파일 폼이 성공적으로 제출되었습니다:', data);
-      navigate('/result', { state: { compilationResult: data } });
+      console.log('컴파일 폼이 성공적으로 제출되었습니다:', data.object.output);
+      setCompilationResult(data.object.output); // 컴파일 결과를 설정
     } else {
       console.error('컴파일 폼 제출 중 오류 발생:', response.statusText);
+      setCompilationResult('컴파일 폼 제출 중 오류 발생: ' + response.statusText);
     }
-  } catch (error:any) {
+  } catch (error: any) {
     console.error('컴파일 폼 제출 중 오류 발생:', error.message);
+    setCompilationResult('컴파일 폼 제출 중 오류 발생: ' + error.message);
   }
 };
 

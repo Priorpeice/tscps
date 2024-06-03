@@ -10,7 +10,8 @@ import ProblemPage from './component/problem/problems';
 import BoardCreationPage from './component/board/creationPage';
 import ProblemCreationPage from './component/problem/creationPage';
 import MemberRegisterPage from './component/member/register'
-
+import VerificationPage from './component/verification/verfication';
+import SubmissionPage from './component/submission/submission';
 
 const App = () => {
   return (
@@ -26,6 +27,8 @@ const App = () => {
         <Route path="/board/write" element={<BoardCreationPage/>}/>
         <Route path="/problem/write" element={<ProblemCreationPage/>}/>
         <Route path="/register" element={<MemberRegisterPage/>}/>
+        <Route path="/verification" element={<VerificationPage/>}/>
+        <Route path="/problem/:problemId/submit" element={<SubmissionPage/>}/>
       </Routes>
  
   );

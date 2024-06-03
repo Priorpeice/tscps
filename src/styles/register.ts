@@ -1,80 +1,63 @@
-import { styled } from 'styled-components';
+
+import styled from 'styled-components';
+
+export const RegisterContainer = styled.div`
+  background-color: #2d2d2d;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const SignupFormContainer = styled.div`
+  background-color: #353535;
+  padding: 40px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 800px;
+`;
 
 export const InputLabel = styled.label`
-  position: absolute;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 19px;
-  color: #FFFFFF;
-  margin-left: 2vh;
-  text-align: right;
+  color: white;
+  margin-bottom: 5px;
+  display: block;
+  font-size: 14px;
 `;
 
 export const InputField = styled.input`
-  position: absolute;
-  box-sizing: border-box;
-  width: 30vw; /* 수정 */
-  height: 5vh; 
-  left: 10vh;
+  width: 100%;
   padding: 10px;
-  border: 1px solid #F6F6F6;
-  border-radius: 5px;
-  margin-top: 5px;
- 
+  margin-bottom: 15px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 `;
 
-export const ErrorText = styled.span`
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 19px;
-  color: #FF5050;
-`;
-
-
-// Styled component for the text "중복확인"
 export const DuplicateCheckButton = styled.button`
-  position: relative;
-  width: 7vw; /* 수정 */
-  height: 5vh; /* 수정 */
-  
-  background: #FFFFFF;
+  background-color: #007bff;
+  color: white;
   border: none;
-  border-radius: 5px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  letter-spacing: 0.1em;
-  color: #1B2834;
+  border-radius: 4px;
+  padding: 10px 15px;
   cursor: pointer;
-`;
+  margin-top: 10px;
 
-
-export const SignupFormContainer = styled.div`
-  position: absolute;
-  width: 80vw; 
-  height: 60vh; 
-  left: 50%;
-  top: 26.68vh;
-  background: #1B2834;
-  border-radius: 30px;
-  transform: translateX(-50%);
+  &:hover {
+    background-color: #0056b3;
+  }
 `;
 
 export const SubmissionButton = styled.button`
-position: absolute;
-width: 7vw; 
-height: 5vh;
-background: #FFFFFF;
-border-radius: 5px;
-font-family: 'Inter';
-font-weight: 500;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: #218838;
+  }
 `;

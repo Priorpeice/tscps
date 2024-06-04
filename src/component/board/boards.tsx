@@ -7,7 +7,7 @@ import ItemList from '../page/ItemList';
 import NavigationBar from '../navigationbar/navgivationBar';
 import { Logo,LogoLink } from '../../styles/logo';
 import { Container, Header } from '../../styles/container';
-import {  Posts, Buttons, Button, SearchBar ,SearchBarAndButton} from '../../styles/postList';
+import {  Posts, Buttons, Button, SearchBar ,SearchBarAndButton,ListTitle} from '../../styles/postList';
 import { Footer } from '../../styles/footer';
 
 const Boards: React.FC = () => {
@@ -26,15 +26,10 @@ const Boards: React.FC = () => {
             </Header>
             <Posts>
                 <SearchBarAndButton>
+                    <ListTitle>Boards</ListTitle>
                     <SearchBar type="text" placeholder="Search..." value={searchTerm} onChange={handleSearchChange}/>
                     <Buttons>
                     <Button onClick={handleSearchClick}>Search</Button> 
-                        <Link to="../problems">
-                            <Button className="problem-button">Problem</Button>
-                        </Link>
-                        <Link to="../boards">
-                            <Button className="board-button">Board</Button>
-                        </Link>
                         <Link to="../board/write">
                             <Button className="write-button">Write</Button>
                         </Link>

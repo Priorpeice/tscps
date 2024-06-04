@@ -25,7 +25,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  width: 100%;
+  width: 97%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -33,7 +33,7 @@ export const Input = styled.input`
 `;
 
 export const Textarea = styled.textarea`
-  width: 100%;
+  width: 97%;
   height: 200px;
   padding: 10px;
   font-size: 16px;

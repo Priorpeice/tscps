@@ -6,7 +6,7 @@ import NavigationBar from '../navigationbar/navgivationBar';
 import { Container, Header } from '../../styles/container';
 import { handleCommentSubmit } from '../comment/handler/commentHandler';
 import { Board } from '../../interface/board';
-import { Comment } from '../../interface/comment';
+import { ApiResponse } from '../../interface/response';
 import { Logo,LogoLink } from '../../styles/logo';
 const PostDetail: React.FC = () => {
     const { boardId } = useParams<{ boardId: string }>(); // Specify the type of useParams
@@ -17,8 +17,9 @@ const PostDetail: React.FC = () => {
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const response = await axios.get<Board>(`/api/board/${boardId}`); // Specify the type of axios.get
-                setBoard(response.data);
+                const response = await axios.get<ApiResponse<Board>>(`/api/board/${boardId}`); // Specify the type of axios.get
+                setBoard(response.data.object);
+        
             } catch (error) {
                 console.error('Error fetching board:', error);
             }
@@ -38,11 +39,12 @@ const PostDetail: React.FC = () => {
     return (
         <Container>
             <Header>
+            <NavigationBar />
             <LogoLink to="/">
                     <Logo>CPS</Logo>
                 </LogoLink >
             </Header>
-            <NavigationBar />
+         
             {board ? (
                 <PostAndCommentBox>
                     <PostBox>
@@ -58,7 +60,8 @@ const PostDetail: React.FC = () => {
                         {board.comments.map((comment) => (
                             <CommentTitleContentBox key={comment.id}>
                                 <CommentTitleBox>
-                                    <p>{comment.id} {comment.regDate}</p>     
+                                    <p>{comment.id} {comment.regDate}</p> 
+                                    <p>{comment.nickname}</p>       
                                 </CommentTitleBox>
                                 <CommentContentBox>
                                     <p>{comment.content}</p>

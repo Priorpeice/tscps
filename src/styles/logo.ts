@@ -8,6 +8,7 @@ export const Logo = styled.div`
   font-size: 48px;
   line-height: 28px;
   color: #FFFFFF;
+  margin-left: 2.5px; 
   z-index: 3;
 `;
 export const LogoLink = styled(Link)`

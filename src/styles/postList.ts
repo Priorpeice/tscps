@@ -16,7 +16,7 @@ export const PostAnchor = styled.a`
 
 export const Posts = styled.div`
   position: absolute;
-  width: 100vw; /* 변경 */
+  width: 97%; /* 변경 */
   left: calc(50% - 50vw); /* 변경 */
   top: 16.67vh; /* 변경 */
   padding: 2.13vh; /* 변경 */
@@ -71,14 +71,14 @@ export const Button = styled.button`
 `;
 
 export const SearchBar = styled.input`
-  width: 23vh;
-  height: 5vh;
+  width: 30vh;
+  height: 3vh;
   left: 15vh;
   top: 30vh;
   padding: 10px;
   border: 1px solid #C6C6C6;
   border-radius: 5px;
-  margin-right: 10px;
+  margin-left: auto;
  
 `;
 export const SearchBarAndButton = styled.div`
@@ -87,3 +87,12 @@ align-items: center;
 margin-bottom: 1rem; 
 gap: 1rem; 
 `;
+
+export const ListTitle =styled.div`
+font-weight: 1000;
+font-family: 'NEXON Lv1 Gothic';
+font-style: normal;
+font-size: 4vh; 
+line-height: 5vh;
+color: #1B2834;
+`

@@ -1,4 +1,4 @@
-// src/component/ide/ide.tsx
+
 
 import React, { useState, useEffect } from 'react';
 import CodeEditor from '../CodeEditor';
@@ -10,6 +10,7 @@ import { Logo,LogoLink } from '../../styles/logo';
 import InputBox from '../InputBox';
 import { Container,Header } from '../../styles/container';
 import { Label } from '../../styles/inputBox';
+import { languageOptions } from '../CompileLanguage';
 import {
   PageContainer,
   IdeHeader,
@@ -58,15 +59,7 @@ const IDEPage: React.FC<IDEPageProps> = ({ initialRows, initialCompileForm }) =>
     );
   }, [initialCompileForm, compilationResult]);
 
-  const languageOptions = [
-    { value: 'java', label: 'Java' },
-    { value: 'py', label: 'Python' },
-    { value: 'c', label: 'C' },
-    { value: 'cpp', label: 'C++' },
-    { value: 'js', label: 'JavaScript' },
-    { value: 'dart', label: 'Dart' },
-  ];
-
+  
   return (
     <PageContainer>
       <Header>

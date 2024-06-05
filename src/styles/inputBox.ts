@@ -24,7 +24,7 @@ export const TextArea = styled.textarea`
   padding: 10px;
   background-color: white;
   color:  #1B2834;
-  border: 1px solid #0066CC;
+  border: 1px solid #1B2834;
   border-radius: 5px;
   font-family: inherit; /* Ensure the font matches the rest of the app */
   box-sizing: border-box; /* Include padding and border in the element's total width and height */

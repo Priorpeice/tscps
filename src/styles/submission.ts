@@ -68,13 +68,14 @@ export const OutputContainer = styled.div`
   border: 1px solid #ddd;
   margin-top: 20px;
 `;
-export const Input = styled.input`
+export const Input = styled.textarea`
   width: 95%;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
   margin-top: 10px;
   font-size: 14px;
+  resize:none;
 `;
 export const CodeEditorContainer = styled.div`
   width: 100%;

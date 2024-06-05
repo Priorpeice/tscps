@@ -41,7 +41,7 @@ export const handleCompileSubmit = async (
 };
 
 export const handleCompileChange = (
-  e: SyntheticEvent<HTMLInputElement>,
+  e: SyntheticEvent<HTMLTextAreaElement>,
   compileForm: CompileForm,
   setCompileForm: React.Dispatch<React.SetStateAction<CompileForm>>
 ) => {

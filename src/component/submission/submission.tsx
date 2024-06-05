@@ -1,6 +1,4 @@
-// src/component/submission/SubmissionPage.tsx
-
-import React, { useState } from 'react';
+import React, { useState, SyntheticEvent, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Container, Header } from '../../styles/container';
 import NavigationBar from '../navigationbar/navgivationBar';
@@ -8,7 +6,10 @@ import CodeEditor from '../CodeEditor';
 import { CompileForm } from '../../interface/compile';
 import { Logo, LogoLink } from '../../styles/logo';
 import { handleCompileSubmit, handleCompileChange } from '../../handler/formHandler';
+import InputBox from '../InputBox';
 import CompileLanguageSelect from '../CompileLanguageSelect';
+import { languageOptions } from '../CompileLanguage';
+import { handleSubmission } from '../../handler/submitHandler';
 import {
   SubmissionContainer,
   Title,
@@ -21,7 +22,7 @@ import {
   Pre,
   Input
 } from '../../styles/submission';
-import { CodeEditorContainer } from '../../styles/submission'; // Import the styled component
+import { CodeEditorContainer } from '../../styles/submission';
 
 const SubmissionPage: React.FC = () => {
   const initialCompileForm: CompileForm = {
@@ -31,30 +32,21 @@ const SubmissionPage: React.FC = () => {
   };
   const { problemId } = useParams<{ problemId: string }>();
   const [compileForm, setCompileForm] = useState<CompileForm>(initialCompileForm);
-  const [inputValue, setInputValue] = useState<string>('');
-  const [output, setOutput] = useState<string>('');
+  const [output, setOutput] = useState<string | null>(null);
+  const accessToken: string | null = localStorage.getItem('accessToken');
 
-  const languageOptions = [
-    { value: 'java', label: 'Java' },
-    { value: 'py', label: 'Python' },
-    { value: 'c', label: 'C' },
-    { value: 'cpp', label: 'C++' },
-    { value: 'js', label: 'JavaScript' },
-    { value: 'dart', label: 'Dart' },
-  ];
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+  const handleCompile = async (e: SyntheticEvent) => {
+    await handleCompileSubmit(e, compileForm, setOutput);
   };
-
-  const handleCompileSubmit = () => {
-    // Simulate submission and output
-    setOutput('Output will be displayed here.');
-  };
-
-  const handleSubmit = () => {
-    // Simulate submission and output
-    setOutput('Output will be displayed here.');
+  const handleSubmit = async (e: SyntheticEvent) => {
+    e.preventDefault();
+    try {
+      const responseData = await handleSubmission(compileForm,accessToken,problemId); 
+      setOutput(responseData); 
+      alert('데이터를 성공적으로 받았습니다: ' + responseData);
+    } catch (error) {
+      console.error('서버 요청 중 오류 발생:', error);
+    }
   };
 
   return (
@@ -78,7 +70,10 @@ const SubmissionPage: React.FC = () => {
         </Section>
         <Section>
           <SectionTitle>Input Values</SectionTitle>
-          <Input type="text" value={inputValue} onChange={handleInputChange} placeholder="Enter input values" />
+          <InputBox
+                  compileForm={compileForm}
+                  handleCompileChange={(e:any) => handleCompileChange(e, compileForm, setCompileForm)}
+                />
         </Section>
         <Section>
           <SectionTitle>소스 코드</SectionTitle>
@@ -86,10 +81,10 @@ const SubmissionPage: React.FC = () => {
             <CodeEditor
               compileForm={compileForm}
               setCompileForm={setCompileForm}
-              style={{ width: '100%', height: '500px' }} // Pass styles as props
+              style={{ width: '100%', height: '500px' }}
             />
           </CodeEditorContainer>
-          <SubmitButton onClick={handleCompileSubmit}>컴파일</SubmitButton>
+          <SubmitButton onClick={handleCompile}>컴파일</SubmitButton>
           <OutputContainer>
             <SectionTitle>실행 결과</SectionTitle>
             <Pre>{output}</Pre>

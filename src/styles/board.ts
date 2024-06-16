@@ -26,6 +26,14 @@ export const CommentBox = styled.div`
   border: 0.107vh solid #F4F4F4;
   overflow-y: auto;
 `;
+
+export const CommentsHeader = styled.div`
+  background-color: #F4F4F4;
+  padding: 10px;
+  font-size: 18px;
+  color: #333;
+  font-weight: bold; /* Example: Making the text bold */
+`;
 export const PostTitleBox = styled.div`
 position: relative;
 width: 48vh; /* 변경 */

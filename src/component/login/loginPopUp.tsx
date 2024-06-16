@@ -37,7 +37,7 @@ const LoginPopup: React.FC<LoginContentProps> = ({ isOpen, closeModal }) => {
     event.preventDefault();
     
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/login', {
+      const response = await axios.post('/api/auth/login', {
         memberId: username,
         password: password
       });

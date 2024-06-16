@@ -41,7 +41,15 @@ export const Textarea = styled.textarea`
   border-radius: 4px;
   resize: none;
 `;
-
+export const InAndOutput = styled.textarea`
+  width: 97%;
+  height: 50px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+`;
 export const Button = styled.button`
   padding: 10px 15px;
   font-size: 16px;

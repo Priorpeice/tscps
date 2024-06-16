@@ -39,47 +39,53 @@ const ProblemDetails: React.FC = () => {
 
   return (
     <Container>
-      <Header> 
-        <NavigationBar/>
+      <Header>
+        <NavigationBar />
         <LogoLink to="/">
-                    <Logo>CPS</Logo>
-                </LogoLink >
-          </Header>
+          <Logo>CPS</Logo>
+        </LogoLink>
+      </Header>
       <ProblemContainer>
-      {loading ? (
-        <div>Loading...</div>
-      ) : !problem ? (
-        <div>Problem not found</div>
-      ) : (
-        <>
-          <Title>{problem.title}</Title>
-          <Link to={`/problem/${problemId}/submit`}>
-            <SubmitLinkButton>제출</SubmitLinkButton>
-          </Link>
-          <Section>
-            <SectionTitle>문제</SectionTitle>
-            <p>{problem.content}</p>
-          </Section>
-          <Section>
-            <SectionTitle>Examples:</SectionTitle>
-            {problem.examples.map(example => (
-              <ExampleSection key={example.id}>
-                <Example>
-                  <h3>예제 입력 {example.id} <CopyButton>복사</CopyButton></h3>
-                  <Pre>{example.input}</Pre>
-                </Example>
-                <Example>
-                  <h3>예제 출력 {example.id} <CopyButton>복사</CopyButton></h3>
-                  <Pre>{example.output}</Pre>
-                </Example>
-              </ExampleSection>
-            ))}
-          </Section>
-        </>
-      )}
+        {loading ? (
+          <div>Loading...</div>
+        ) : !problem ? (
+          <div>Problem not found</div>
+        ) : (
+          <>
+            <Title>{problem.title}</Title>
+            <Link to={`/problem/${problemId}/submit`}>
+              <SubmitLinkButton>제출</SubmitLinkButton>
+            </Link>
+            <Link to={`../submission/${problemId}`}>
+              <SubmitLinkButton>제출 목록</SubmitLinkButton>
+            </Link>
+            <Section>
+              <SectionTitle>문제</SectionTitle>
+              <p>{problem.content}</p>
+            </Section>
+            <Section>
+              <SectionTitle>Examples:</SectionTitle>
+              {problem.examples.map((example, index) => (
+                <ExampleSection key={example.id}>
+                  <Example>
+                    <h3>
+                      예제 입력 {index + 1} <CopyButton>복사</CopyButton>
+                    </h3>
+                    <Pre>{example.input}</Pre>
+                  </Example>
+                  <Example>
+                    <h3>
+                      예제 출력 {index + 1} <CopyButton>복사</CopyButton>
+                    </h3>
+                    <Pre>{example.output}</Pre>
+                  </Example>
+                </ExampleSection>
+              ))}
+            </Section>
+          </>
+        )}
       </ProblemContainer>
     </Container>
-    
   );
 };
 

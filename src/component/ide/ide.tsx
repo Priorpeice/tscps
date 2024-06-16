@@ -1,14 +1,12 @@
-
-
 import React, { useState, useEffect } from 'react';
 import CodeEditor from '../CodeEditor';
 import CompileLanguageSelect from '../CompileLanguageSelect';
 import { handleCompileSubmit, handleCompileChange } from '../../handler/formHandler';
 import { CompileForm } from '../../interface/compile';
 import NavigationBar from '../navigationbar/navgivationBar';
-import { Logo,LogoLink } from '../../styles/logo';
+import { Logo, LogoLink } from '../../styles/logo';
 import InputBox from '../InputBox';
-import { Container,Header } from '../../styles/container';
+import { Container, Header } from '../../styles/container';
 import { Label } from '../../styles/inputBox';
 import { languageOptions } from '../CompileLanguage';
 import {
@@ -59,21 +57,20 @@ const IDEPage: React.FC<IDEPageProps> = ({ initialRows, initialCompileForm }) =>
     );
   }, [initialCompileForm, compilationResult]);
 
-  
   return (
     <PageContainer>
       <Header>
         <NavigationBar />
         <LogoLink to="/">
           <Logo>CPS</Logo>
-        </LogoLink >
+        </LogoLink>
       </Header>
       <Content>
         <form onSubmit={handleSubmit} style={{ width: '100%', height: '100%' }}>
           <CompileLanguageContainer>
             <CompileLanguageSelect
               languageOptions={languageOptions}
-              handleCompileChange={(e:any) => handleCompileChange(e, compileForm, setCompileForm)}
+              handleCompileChange={(e: any) => handleCompileChange(e, compileForm, setCompileForm)}
               value={compileForm.language}
             />
             <CompileButton type="submit">Run</CompileButton>
@@ -90,11 +87,11 @@ const IDEPage: React.FC<IDEPageProps> = ({ initialRows, initialCompileForm }) =>
               <Panel>
                 <InputBox
                   compileForm={compileForm}
-                  handleCompileChange={(e:any) => handleCompileChange(e, compileForm, setCompileForm)}
+                  handleCompileChange={(e: any) => handleCompileChange(e, compileForm, setCompileForm)}
                 />
               </Panel>
               <Panel>
-              <Label htmlFor="compilationResult">Compilation Output:</Label>
+                <Label htmlFor="compilationResult">Compilation Output:</Label>
                 <CompilationResult id="compilationResult">
                   {loading && <p>Loading...</p>}
                   {!loading && compilationResult && (
@@ -109,7 +106,7 @@ const IDEPage: React.FC<IDEPageProps> = ({ initialRows, initialCompileForm }) =>
           </Content>
         </form>
       </Content>
-      <Footer />
+      {/* <Footer /> */}
     </PageContainer>
   );
 };

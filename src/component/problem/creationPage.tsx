@@ -3,10 +3,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import ForbiddenRedirect from '../../handler/forbiddenRedirect';
-import { CreationContainer, Form, FormGroup, Label, Input, Textarea, Button, AddButton } from '../../styles/Creation';
-import { Container,Header } from '../../styles/container';
+import { CreationContainer, Form, FormGroup, Label, Input, Textarea,InAndOutput, Button, AddButton } from '../../styles/Creation';
+import { Container, Header } from '../../styles/container';
 import NavigationBar from '../navigationbar/navgivationBar';
-import { Logo,LogoLink } from '../../styles/logo';
+import { Logo, LogoLink } from '../../styles/logo';
 
 const CreateProblemPage: React.FC = () => {
     const [title, setTitle] = useState<string>('');
@@ -50,7 +50,7 @@ const CreateProblemPage: React.FC = () => {
         return <ForbiddenRedirect />;
     }
 
-    const handleInputChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (index: number, e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         if (name === 'input') {
             const newInputs = [...inputs];
@@ -84,21 +84,20 @@ const CreateProblemPage: React.FC = () => {
             <Form onSubmit={handleSubmit}>
                 <FormGroup>
                     <Label>Title:</Label>
-                    <Input type="text" value={title} onChange={(e:any) => setTitle(e.target.value)} required />
+                    <Input type="text" value={title} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)} required />
                 </FormGroup>
                 <FormGroup>
                     <Label>Content:</Label>
-                    <Textarea value={content} onChange={(e:any) => setContent(e.target.value)} required />
+                    <Textarea value={content} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setContent(e.target.value)} required />
                 </FormGroup>
                 <FormGroup>
                     <Label>Inputs:</Label>
                     {inputs.map((input, index) => (
-                        <Input
+                        <InAndOutput
                             key={index}
-                            type="text"
                             name="input"
                             value={input}
-                            onChange={(e:any) => handleInputChange(index, e)}
+                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleInputChange(index, e)}
                             required
                         />
                     ))}
@@ -107,12 +106,11 @@ const CreateProblemPage: React.FC = () => {
                 <FormGroup>
                     <Label>Outputs:</Label>
                     {outputs.map((output, index) => (
-                        <Input
+                        <InAndOutput
                             key={index}
-                            type="text"
                             name="output"
                             value={output}
-                            onChange={(e:any) => handleInputChange(index, e)}
+                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleInputChange(index, e)}
                             required
                         />
                     ))}

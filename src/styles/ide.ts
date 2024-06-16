@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 
 export const PageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  max-width: 1920px;
+  height: auto;
   background-color: #1E2833;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
   padding: 20px;
 `;
 

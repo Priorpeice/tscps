@@ -13,7 +13,7 @@ interface Props {
 
 const CompileLanguageSelect: React.FC<Props> = ({ languageOptions, handleCompileChange, value }) => (
   <div id="compileLanguageContainer">
-    <label htmlFor="compileLanguage">Select Language:</label>
+    <label htmlFor="compileLanguage">Select Language  :  </label>
     <SelectWrapper>
       <Select
         name="language"

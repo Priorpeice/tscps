@@ -12,7 +12,7 @@ background: #FFFFFF;
 export const Header =styled.div `
 position: relative;
 width: 100%;
-height: 13vh; 
+height: 15vh; 
 top: 0;
 left: 0;
 padding: 1.07vh;

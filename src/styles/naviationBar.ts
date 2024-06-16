@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom';
 
 export const NavigationBar = styled.div`
   position: relative;
-  width: 38.8vw; /* 변경 */
-  height: 3.2vh; /* 변경 */
-  left: 1.2vh; /* 변경 */
-  top: 10vh; /* 변경 */
+  width: 38.8vw; 
+  height: 3.2vh; 
+  left: 1.2vh;
+  top: 12vh; 
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 900;

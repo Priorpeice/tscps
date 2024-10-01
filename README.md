@@ -1,46 +1,60 @@
-# Getting Started with Create React App
+# TsCPS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## (TypeScript Coding Practice Service)
 
-## Available Scripts
+## 💡 프로젝트 소개
 
-In the project directory, you can run:
+- CPS 프로젝트에 FrontEnd 파트입니다.
+- BackEnd : https://github.com/Priorpeice/cps
+- LlmServer : https://github.com/Priorpeice/llamaServer
 
-### `npm start`
+## ⚙️ 프로젝트 개발 환경
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 프로그래밍 언어 : JavaScript, TypeScript
+- 개발도구: Visual Studio Code
+- 프레임워크 및 라이브러리: React, AceEditor,Styled-components
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## ❓ 왜 프로젝트 이름이 TsCPS인가?
 
-### `npm test`
+- 기존 프로젝트를 JavaScript만으로 진행을 했었습니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+이때 오류가 발생을 캐치하는 것과 발생 시 디버깅할 때 애를 많이 먹었습니다. 따라서 정적으로 타입을 제한하여 오류를  배제하고자 TS를 프로젝트에 적용해보았습니다. 
 
-### `npm run build`
+- TypeScript의 재사용성
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Ts가 Js에 비해 코드 재사용성이 높다고 생각합니다. Interface를 만들어 사용한다는 장점이 있는데 숙련도를 그만큼 향상시킬수록 빛을 바랄것으로 전망됩니다. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📚 기능
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 메인 화면
+    - 메인화면에서는 ide 와 문제 게시판 , 코드 검증 기능 , 로그인 기능들로 이동할 수 있습니다.
+    
+   ![MAIN](https://github.com/user-attachments/assets/983f0709-ce21-486b-9e11-b285df14ea12)
+    
+- 코드 실행 및 채점 기능
+    - AceEditor를 사용하여 ide 화면을 구현하였으며 오른쪽 input 창을 통해 사용자 입력도 받을수 있게 구현하였습니다. 언어의 경우는 Java,C,C++,Python, Dart 언어를 제공하고 있습니다.
+        
+        ![IDE](https://github.com/user-attachments/assets/76d79b14-73c9-4a94-bfc6-4d047bda01e8)
+        
+    
+    - 코드 제출의 경우에는 별도의 ide를 두어서 제출 전 실행하여 확인 해볼수도 있습니다.
+        
+        ![submit](https://github.com/user-attachments/assets/b1541315-b8b7-40aa-99f4-61db324e0e95)
+        
+- 게시판 기능
+    - 게시판은 문제 게시판과 커뮤니티 게시판이 있습니다.
+    
+    문제 게시판의 게시물은 아래 그림과 같습니다.
+    
+    ![problem](https://github.com/user-attachments/assets/601dc35d-2254-4fca-9626-d4ad665d88f9)
+    
+- 로그인 기능
+    - 로그인 화면에서는 로그인과 회원가입으로 이동할 수 있는 기능이 있습니다.
+    
+    로그인 폼은 모달로써 구현이 되었습니다. 로그인 페이지로 이동하는 것이 아닌 모달을 띄움으로써 로그인을 꼭 하고 이용하도록 강조하는 역활로 사용되었습니다.
+    
+    ![login](https://github.com/user-attachments/assets/4db77e24-13fa-40a0-93bc-87e3f086625a)
+    
+- 코드 분석 기능
+    
+    사용자의 코드를 입력받아 WAS에 요청합니다.

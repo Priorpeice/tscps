@@ -1,5 +1,3 @@
-// src/component/CodeEditor.tsx
-
 import React from 'react';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/theme-monokai';
@@ -19,11 +17,14 @@ interface Props {
     code: string;
   }>>;
   style?: React.CSSProperties; // Add style prop
+  readOnly?: boolean; // Add readOnly prop
 }
 
-const CodeEditor: React.FC<Props> = ({ compileForm, setCompileForm, style }) => {
+const CodeEditor: React.FC<Props> = ({ compileForm, setCompileForm, style, readOnly = false }) => { // Default to false for readOnly
   const handleEditorChange = (value: string) => {
-    setCompileForm((prevForm) => ({ ...prevForm, code: value }));
+    if (!readOnly) { // Prevent changes if readOnly is true
+      setCompileForm((prevForm) => ({ ...prevForm, code: value }));
+    }
   };
 
   const getAceMode = (language: string): string => {
@@ -71,6 +72,7 @@ const CodeEditor: React.FC<Props> = ({ compileForm, setCompileForm, style }) => 
       showPrintMargin={true}
       showGutter={true}
       highlightActiveLine={true}
+      readOnly={readOnly} // Apply readOnly prop to AceEditor
       setOptions={{
         useWorker: false,
         enableBasicAutocompletion: false,

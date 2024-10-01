@@ -64,11 +64,11 @@ const SubmissionPage: React.FC = () => {
         problemId
       );
       setOutput(responseData);
-      alert("데이터를 성공적으로 받았습니다: " + responseData);
+      alert("제출이 완료되었습니다.");
       navigate(`../../submission/${problemId}`); // Navigate to desired route
     } catch (error:any) {
 
-      if (error.status == 403) {
+      if (error.status == 401) {
         setIsForbidden(true);
       } 
       console.error("서버 요청 중 오류 발생:", error);

@@ -61,7 +61,7 @@ export const PostContentBox = styled.div`
  
 `;
 
-export const CommentPostBar = styled.input`
+export const CommentPostBar = styled.textarea`
 position: relative;  
 bottom:-5vh;
 box-sizing: border-box;
@@ -71,6 +71,8 @@ background: #FFFFFF;
 border: 0.0535vh solid #000000;
 border-radius: 15px;
 margin-left: 1vh; /* 간격 조정 */
+margin : 5px;
+padding: 7px;
 `;
 
 
@@ -100,10 +102,12 @@ width: 2.5vh; /* Adjusted width using vh units */
 height: 2.5vh; /* Adjusted height using vh units */
 border: none;
 cursor: pointer;
+background-color : #FFFFFF; 
 `;
 export const MessageContainer = styled.div`
   display: flex;
   align-items: center; 
   justify-content: center;
+  
 `;
 

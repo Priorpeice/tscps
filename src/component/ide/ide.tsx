@@ -27,7 +27,7 @@ interface IDEPageProps {
   initialCompileForm?: CompileForm;
 }
 
-const IDEPage: React.FC<IDEPageProps> = ({ initialRows, initialCompileForm }) => {
+const IDEPage: React.FC<IDEPageProps> = ({initialCompileForm }) => {
   const [compileForm, setCompileForm] = useState<CompileForm>(
     initialCompileForm || {
       language: 'java',
@@ -41,20 +41,15 @@ const IDEPage: React.FC<IDEPageProps> = ({ initialRows, initialCompileForm }) =>
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    handleCompileSubmit(e, compileForm, (result) => {
-      setCompilationResult(result);
+    try {
+      await handleCompileSubmit(e, compileForm, setCompilationResult); 
+    } finally {
       setLoading(false);
-    });
+    }
   };
 
   useEffect(() => {
-    setCompileForm(
-      initialCompileForm || {
-        language: 'java',
-        code: '',
-        input: '',
-      }
-    );
+    
   }, [initialCompileForm, compilationResult]);
 
   return (

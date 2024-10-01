@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 export const StyledProblemLink = styled(Link)`
     text-decoration: none; /* Remove underline */
     color: inherit; 
-  
+`;
+export const StyledSubmissionDetailLink = styled(Link)`
+    text-decoration: none; /* Remove underline */
+    color: inherit; 
 `;
 export const Title = styled.h1`
     font-size: 30px;

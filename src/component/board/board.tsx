@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useRef, useLayoutEffect } from 'react';
 import axios from 'axios';
 import { useParams,Link } from 'react-router-dom';
 import { PostTitleBox, PostBox, PostContentBox, CommentBox,CommentsHeader, PostAndCommentBox, CommentPostBar, CommentTitleBox, CommentContentBox, CommentTitleContentBox, MessageButton ,MessageContainer} from '../../styles/board';
@@ -13,6 +13,7 @@ const PostDetail: React.FC = () => {
     const [board, setBoard] = useState<Board | null>(null); // Specify the type of useState
     const [newComment, setNewComment] = useState<string>('');
     const accessToken: string | null = localStorage.getItem('accessToken');
+    const commentInputRef = useRef<HTMLTextAreaElement>(null); // CommentPostBar에 대한 참조
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -30,12 +31,19 @@ const PostDetail: React.FC = () => {
 
     const handleCommentButtonClick = async () => {
         if (!accessToken) {
-            console.error('Access token not found');
-            return;
+          console.error('Access token not found');
+          return;
+        }
+    
+        if (newComment.trim() === "") {
+          alert("댓글을 입력해야 보낼 수 있습니다."); // Alert으로 에러 메시지 표시
+          commentInputRef.current?.focus(); // 다시 포커스 맞추기
+          return;
         }
         await handleCommentSubmit(boardId!, newComment, setBoard, setNewComment, accessToken);
-    };
-
+      };
+    
+     
     return (
         <Container>
             <Header>
@@ -74,13 +82,15 @@ const PostDetail: React.FC = () => {
             ) : (
                 <div>Loading...</div>
             )}
-            <MessageContainer>
-              <CommentPostBar
-               value={newComment}
-               onChange={(e) => setNewComment(e.target.value)}
-               />
-            <MessageButton onClick={handleCommentButtonClick} />
-            </MessageContainer>
+      <MessageContainer>
+        <CommentPostBar
+          ref={commentInputRef} // 참조 추가
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+        />
+        <MessageButton onClick={handleCommentButtonClick} />
+      </MessageContainer>
+    
         </Container>
     );
 };

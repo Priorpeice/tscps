@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Frame, MainHeader, CpsLogo, RectangleBox, Vector, IdeText, ProblemText, VerificationText, PcCheckIcon, TerminalIcon, UserIcon, MathSymbolsIcon, Popup } from '../../styles/mainStyle'; // styled-components import
 import ideImage from '../../image/terminal.png';
@@ -9,6 +9,15 @@ import { ModalButton, LoginPopup } from '../login/loginPopUp'; // 컴포넌트 i
 
 const MainPage: React.FC = () => {
   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    // 페이지가 처음 렌더링될 때 localStorage에서 accessToken을 가져옴
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      setAccessToken(token);
+    }
+  }, []);
 
   const openPopup = () => {
     setIsPopupOpen(true);
@@ -27,8 +36,15 @@ const MainPage: React.FC = () => {
       <RectangleBox id="rectangleBox2" style={{ left: '50vw', top: '39.22vh', transform: 'translate(-50%, -50%)' }} />
       <RectangleBox id="rectangleBox3" style={{ left: '75vw', top: '39.22vh', transform: 'translate(-50%, -50%)' }} />
 
-      {/* VectorButton 컴포넌트 사용 */}
-      <ModalButton openModal={openPopup} />
+      {/* Conditional rendering based on accessToken */}
+      {accessToken ? (
+        <Link to="/myPage">
+         <Vector>profile</Vector>
+        </Link>
+      ) : (
+        <ModalButton openModal={openPopup} />
+      )}
+
       <LoginPopup isOpen={isPopupOpen} closeModal={closePopup} />
       <Link to="/ide">
         <IdeText>IDE</IdeText>

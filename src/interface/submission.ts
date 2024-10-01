@@ -5,4 +5,5 @@ export interface Submission {
     nickname: string;
     problemId: string;
     language: string;
+    code: string;
 }

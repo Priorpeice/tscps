@@ -1,6 +1,7 @@
 // src/component/problem/CreateProblemPage.tsx
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ForbiddenRedirect from '../../handler/forbiddenRedirect';
 import { CreationContainer, Form, FormGroup, Label, Input, Textarea,InAndOutput, Button, AddButton } from '../../styles/Creation';
@@ -15,7 +16,7 @@ const CreateProblemPage: React.FC = () => {
     const [outputs, setOutputs] = useState<string[]>(['']);
     const [isForbidden, setIsForbidden] = useState(false);
     const accessToken: string | null = localStorage.getItem('accessToken');
-    
+    const navigate = useNavigate(); 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
@@ -31,10 +32,10 @@ const CreateProblemPage: React.FC = () => {
                 }
               }
         );
-            alert(`게시되었습니다!${response}`);
-            // Optionally, redirect to another page or show a success message
+            alert(`게시되었습니다!`);
+           navigate('../../problems');
         } catch (error:any) {
-            if (error.response && error.response.status === 403) {
+            if (error.response && error.response.status === 401) {
                 // 403 Forbidden일 때 ForbiddenRedirect 사용
                 setIsForbidden(true);
             } 

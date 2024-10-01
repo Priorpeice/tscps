@@ -12,22 +12,22 @@ const SubmissionPagination: React.FC<SubmissionPaginationProps> = ({ currentPage
         <PaginationContainer>
             <PageButton
                 onClick={() => onPageChange(currentPage - 1)}
-                disabled={currentPage === 1}
+                disabled={currentPage === 0}
             >
                 Previous
             </PageButton>
             {Array.from({ length: totalPages }, (_, i) => (
                 <PageButton
-                    key={i + 1}
-                    onClick={() => onPageChange(i + 1)}
-                    disabled={currentPage === i + 1}
+                    key={i}
+                    onClick={() => onPageChange(i)}
+                    disabled={currentPage === i}
                 >
                     {i + 1}
                 </PageButton>
             ))}
             <PageButton
                 onClick={() => onPageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
+                disabled={currentPage === totalPages-1}
             >
                 Next
             </PageButton>

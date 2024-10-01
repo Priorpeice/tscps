@@ -14,6 +14,8 @@ import VerificationPage from './component/verification/verfication';
 import SubmissionPage from './component/submission/submission';
 import AllSubmissionsListPage from './component/submission/allSubmissionList';
 import SubmissionsListPage from './component/submission/submissionList';
+import SubmissionsDetailPage from './component/submission/submissionDetail';
+import MyPage from './component/myPage/myPage';
 const App = () => {
   return (
 
@@ -32,6 +34,8 @@ const App = () => {
         <Route path="/problem/:problemId/submit" element={<SubmissionPage/>}/>
         <Route path="/submissions" element={<AllSubmissionsListPage/>}/>
         <Route path="/submission/:problemId" element={<SubmissionsListPage/>}/>
+        <Route path="/submission/detail/:submissionId" element={<SubmissionsDetailPage/>}/>
+        <Route path="/myPage" element={<MyPage/>}/>
       </Routes>
  
   );

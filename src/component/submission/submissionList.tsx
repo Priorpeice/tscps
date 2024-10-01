@@ -7,6 +7,7 @@ import NavigationBar from "../navigationbar/navgivationBar";
 import {
   Title,
   StyledProblemLink,
+  StyledSubmissionDetailLink,
   SubmissionSearchWrapper,
   SearchBar,
   Button,
@@ -33,7 +34,7 @@ const SubmissionsListPage: React.FC = () => {
     items,
     totalPages,
   } = usePagination(`/api/submission/${problemId}`, "/api/submissions/search");
-
+  
   return (
     <Container>
       <Header>
@@ -43,15 +44,15 @@ const SubmissionsListPage: React.FC = () => {
         </LogoLink>
       </Header>
       <SubmissionSearchWrapper>
-      <Title>Problem: {problemId}번</Title>
-      <div>
-        <SearchBar
-          type="text"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
-        <Button onClick={handleSearchClick}>Search</Button>
+        <Title>Problem: {problemId}번</Title>
+        <div>
+          <SearchBar
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+          <Button onClick={handleSearchClick}>Search</Button>
         </div>
       </SubmissionSearchWrapper>
       <Table>
@@ -66,21 +67,28 @@ const SubmissionsListPage: React.FC = () => {
         </thead>
         <tbody>
           {items.map((item) => (
-            <TableRow key={item.id}>
+            <TableRow key={item.submissionId}>
               <TableCell>{item.submissionId}</TableCell>
               <TableCell>{item.nickname}</TableCell>
               <TableCell>
-                <StyledProblemLink to ={`/problem/${item.problemId}`}>{item.problemId}</StyledProblemLink >
+                <StyledProblemLink to={`/problem/${item.problemId}`}>
+                  {item.problemId}
+                </StyledProblemLink>
               </TableCell>
               <TableCell>
-                {item.isAnswer ? (
-                  <ResultSuccess>맞았습니다!!</ResultSuccess>
-                ) : (
-                  <ResultFailure>틀렸습니다...</ResultFailure>
-                )}
+                <StyledSubmissionDetailLink
+                  to={`/submission/detail/${item.submissionId}`}
+                  state={{ language: item.language }}
+                >
+                  {item.isAnswer ? (
+                    <ResultSuccess>맞았습니다!!</ResultSuccess>
+                  ) : (
+                    <ResultFailure>틀렸습니다...</ResultFailure>
+                  )}
+                </StyledSubmissionDetailLink>
               </TableCell>
-
               <TableCell>{item.language}</TableCell>
+              <input type="hidden" name={`code_${item.id}`} value={item.code} />
             </TableRow>
           ))}
         </tbody>

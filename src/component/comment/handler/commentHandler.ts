@@ -29,6 +29,7 @@ export const handleCommentSubmit = async (
         // Clear the comment input
         setNewComment('');
     } catch (error) {
+        alert("로그인을 다시해주세요");
         console.error('Error posting comment:', error);
     }
 };

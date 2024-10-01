@@ -15,3 +15,15 @@ export const LogoLink = styled(Link)`
   color: #FFFFFF;
   text-decoration: none;
 `;
+export const BlueLogo = styled.div`
+  font-weight: bold;
+  font-family: 'NEXON Lv1 Gothic';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 28px;
+  color: #1B2834;
+  margin-left: 2.5px; 
+  margin-top: 15px;
+  z-index: 3;
+`;

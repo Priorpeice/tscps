@@ -1,21 +1,21 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import MainPage from './component/main/main';
-import IDEPage from './component/ide/ide';
-import PostDetail from './component/board/board';
-import ProblemDetails from './component/problem/problem';
-import CompileResultPage from './component/result'; // 결과 창 페이지 컴포넌트의 경로에 따라 수정
-import BoardPage from './component/board/boards';
-import ProblemPage from './component/problem/problems';
-import BoardCreationPage from './component/board/creationPage';
-import ProblemCreationPage from './component/problem/creationPage';
-import MemberRegisterPage from './component/member/register'
-import VerificationPage from './component/verification/verfication';
-import SubmissionPage from './component/submission/submission';
-import AllSubmissionsListPage from './component/submission/allSubmissionList';
-import SubmissionsListPage from './component/submission/submissionList';
-import SubmissionsDetailPage from './component/submission/submissionDetail';
-import MyPage from './component/myPage/myPage';
+import MainPage from './components/main/main';
+import IDEPage from './components/ide/ide';
+import PostDetail from './components/board/board';
+import ProblemDetails from './components/problem/problem';
+import CompileResultPage from './components/result'; // 결과 창 페이지 컴포넌트의 경로에 따라 수정
+import BoardPage from './components/board/boards';
+import ProblemPage from './components/problem/problems';
+import BoardCreationPage from './components/board/creationPage';
+import ProblemCreationPage from './components/problem/creationPage';
+import MemberRegisterPage from './components/member/register'
+import VerificationPage from './components/verification/verfication';
+import SubmissionPage from './components/submission/submission';
+import AllSubmissionsListPage from './components/submission/allSubmissionList';
+import SubmissionsListPage from './components/submission/submissionList';
+import SubmissionsDetailPage from './components/submission/submissionDetail';
+import MyPage from './components/myPage/myPage';
 const App = () => {
   return (
 

@@ -19,6 +19,14 @@ const CreateProblemPage: React.FC = () => {
     const navigate = useNavigate(); 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        const isEmptyOrWhitespace = (str: string) => !/\S/.test(str);
+
+        if (isEmptyOrWhitespace(title) || isEmptyOrWhitespace(content)) {
+          alert('제목과 내용을 모두 입력해 주세요.');
+          return;
+        }
+        
         try {
             const response = await axios.post('/api/problem', {
                 title,

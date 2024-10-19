@@ -21,10 +21,14 @@ const CreateBoardPage: React.FC = () => {
   const handleContentChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(event.target.value);
   };
+  
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    
+  if (!title.trim() || !content.trim()) {
+    alert('제목과 내용을 모두 입력해 주세요.');
+    return;
+  }
     try {
       const response = await axios.post('/api/board', 
       {

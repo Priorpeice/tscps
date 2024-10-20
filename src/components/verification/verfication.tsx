@@ -4,52 +4,53 @@ import { useParams, Link } from 'react-router-dom';
 import NavigationBar from '../navigationbar/navgivationBar';
 import { Container, Header } from '../../styles/container';
 import { VerificationBox, VerificationInput, VerificationOutput } from '../../styles/verification';
-import { Logo,LogoLink } from '../../styles/logo';
+import { Logo, LogoLink } from '../../styles/logo';
+import { handleVeriSubmit } from './handler/verificationHandler';
 const VerificationPage: React.FC = () => {
-    const [inputValue, setInputValue] = useState<string>('');
-    const [outputValue, setOutputValue] = useState<string>('');
-    
-    const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      setInputValue(e.target.value);
-    };
-  
-    const handleSubmit = async (e: FormEvent) => {
-      e.preventDefault();
-      try {
-        const response = await axios.post('/api/verification', { question: inputValue });
-        setOutputValue(response.data.object.response); 
-      } catch (error) {
-        console.error('Error during verification:', error);
-        setOutputValue('Verification failed. Please try again.');
-      }
-    };
-  
-    return (
-      <Container>
-        <Header> 
+  const [inputValue, setInputValue] = useState<string>('');
+  const [outputValue, setOutputValue] = useState<string>('');
+  const [isVerifying, setIsVerifying] = useState<boolean>(false);
+
+  const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (isVerifying) return; // 검증 중이면 입력 무시
+    setIsVerifying(true);     // 버튼 비활성화
+    await handleVeriSubmit(e, inputValue, setOutputValue);
+    setIsVerifying(false);    // 검증 후 다시 활성화
+  };
+
+  return (
+    <Container>
+      <Header>
         <NavigationBar />
         <LogoLink to="/">
           <Logo>CPS</Logo>
         </LogoLink>
-        </Header>
-        
-        <VerificationBox>
-          <form onSubmit={handleSubmit}>
-            <VerificationInput
-              value={inputValue}
-              onChange={handleInputChange}
-              placeholder="Enter verification data"
-            />
-            <button type="submit">Submit</button>
-          </form>
-          <VerificationOutput
-            value={outputValue}
-            readOnly
-            placeholder="Verification result will appear here"
+      </Header>
+      <VerificationBox>
+        <form onSubmit={handleSubmit}>
+          <VerificationInput
+            value={inputValue}
+            onChange={handleInputChange}
+            placeholder="Enter verification data"
+            disabled={isVerifying}  // 검증 중에는 입력 비활성화
           />
-        </VerificationBox>
-      </Container>
-    );
+          <button type="submit" disabled={isVerifying}>
+            {isVerifying ? '검증 중...' : '코드 분석'}
+          </button>
+        </form>
+        <VerificationOutput
+          value={outputValue}
+          readOnly
+          placeholder="Verification result will appear here"
+        />
+      </VerificationBox>
+    </Container>
+  );
 };
 
 export default VerificationPage;

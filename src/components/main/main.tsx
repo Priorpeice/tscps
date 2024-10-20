@@ -55,11 +55,18 @@ const MainPage: React.FC = () => {
       <Link to="/verification">
         <VerificationText>verification</VerificationText>
       </Link>
+      
       {/* 아이콘 이미지 */}
+      <Link to="/verification">
       <PcCheckIcon src={authImage} alt="PC Check Icon" />
+      </Link>
+      <Link to="/ide">
       <TerminalIcon src={ideImage} alt="Terminal Icon" />
+      </Link>
       <UserIcon src={userImage} alt="Rectangle" />
+      <Link to="/problems">
       <MathSymbolsIcon src={problemImage} alt="Math Symbols Icon" />
+      </Link>
       <Popup id="popup" />
     </Frame>
   );

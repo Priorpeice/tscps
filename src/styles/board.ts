@@ -5,7 +5,7 @@ export const PostAndCommentBox = styled.div`
  position: relative;
   top: 5vh;
   width: calc(100% - 20vh); 
-  height: 45vh; 
+  height: 48vh; 
   display: flex;
   margin: 0 auto; 
   justify-content: center; /* 가로 방향 가운데 정렬 */
@@ -15,14 +15,14 @@ export const PostAndCommentBox = styled.div`
 export const PostBox = styled.div`
   position: relative;
   width: 48vh;
-  height: 43.92vh;
+  height:40vh;
   border: 0.107vh solid #F4F4F4;
 `;
 
 export const CommentBox = styled.div`
   position: relative;
   width: 52vh;
-  height: 43.92vh;
+  height: 40vh;
   border: 0.107vh solid #F4F4F4;
   overflow-y: auto;
 `;
@@ -55,24 +55,19 @@ color: #1B2834;
 export const PostContentBox = styled.div`
   position: relative;
   width: 49.7vh; /* 변경 */
-  height: 29.87vh; /* 변경 */
+  height: 15vh; /* 변경 */
   left: 1.92vh; /* 변경 */
   top: 5vh; /* 변경 */
  
 `;
 
 export const CommentPostBar = styled.textarea`
-position: relative;  
-bottom:-5vh;
-box-sizing: border-box;
-width: 38vh; /* 변경 */
-height: 3.33vh; /* 변경 */
-background: #FFFFFF;
-border: 0.0535vh solid #000000;
-border-radius: 15px;
-margin-left: 1vh; /* 간격 조정 */
-margin : 5px;
-padding: 7px;
+  box-sizing: border-box;
+  width: 100%; 
+  height: 3.33vh; 
+  border: none; 
+  margin: 0; 
+  padding: 7px; 
 `;
 
 
@@ -94,12 +89,11 @@ export const CommentTitleContentBox = styled.div`
 `;
 
 export const MessageButton = styled.button`
-position: relative;  
 bottom:-5vh;
 background-image: url(${MessageIcon});
 background-size: cover;
-width: 2.5vh; /* Adjusted width using vh units */
-height: 2.5vh; /* Adjusted height using vh units */
+width: 2.5vh; 
+height: 2.5vh; 
 border: none;
 cursor: pointer;
 background-color : #FFFFFF; 
@@ -107,7 +101,12 @@ background-color : #FFFFFF;
 export const MessageContainer = styled.div`
   display: flex;
   align-items: center; 
+  width: 50%;
   justify-content: center;
-  
+  border: 0.0535vh solid #000000; 
+  border-radius: 15px; 
+  padding: 5px;
+  background: #FFFFFF;
+  margin: 20px auto; 
 `;
 

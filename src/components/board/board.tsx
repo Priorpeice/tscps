@@ -90,7 +90,6 @@ const PostDetail: React.FC = () => {
         />
         <MessageButton onClick={handleCommentButtonClick} />
       </MessageContainer>
-    
         </Container>
     );
 };

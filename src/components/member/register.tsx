@@ -2,7 +2,7 @@
 
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link ,Navigate,useNavigate} from 'react-router-dom';
 import { Frame,MainHeader,CpsLogo } from '../../styles/mainStyle';
 import {
   RegisterContainer,
@@ -18,6 +18,7 @@ import { FormData } from '../../interface/memberForm';
 
 const SignupForm: React.FC = () => {
   const [isIdAvailable, setIsIdAvailable] = useState<boolean>(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     id: '',
     pw: '',
@@ -59,10 +60,10 @@ const SignupForm: React.FC = () => {
     try {
       const response = await axios.post('/api/auth/member', formData);
       alert(`회원가입이 성공했습니다!\n아이디: ${formData.id}\n이름: ${formData.name}\n닉네임: ${formData.nickname}\n전화번호: ${formData.phone}\n학번: ${formData.scode}\n이메일: ${formData.email}`);
-      // 회원가입이 성공했을 때 사용자에게 알림 등을 추가할 수 있습니다.
+      navigate('/');
     } catch (error) {
       console.error('Error occurred:', error);
-      // 오류 발생 시 사용자에게 알림 등을 추가할 수 있습니다.
+      alert('오류가 발생했습니다.');
     }
   };
 

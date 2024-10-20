@@ -84,6 +84,17 @@ export const CompileButton = styled.button`
   cursor: pointer;
   margin-left: 10px;
 `;
+
+export const CodeSaveButton = styled.button`
+  background-color: #AB38AD;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+`;
+
 export const CompilationResult = styled.div`
   margin-top: 20px;
   padding: 10px;

@@ -20,7 +20,9 @@ import {
   CompileButton,
   CompilationResult,
   Footer,
+  CodeSaveButton,
 } from '../../styles/ide';
+import { downloadFile } from '../../handler/fileDownloadHandler';
 
 interface IDEPageProps {
   initialRows?: number;
@@ -37,6 +39,19 @@ const IDEPage: React.FC<IDEPageProps> = ({initialCompileForm }) => {
   );
   const [compilationResult, setCompilationResult] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  
+   // accessToken을 localStorage에서 가져옴
+   const accessToken: string | null = localStorage.getItem('accessToken');
+
+  const handleDownload = async () => {
+    const fileVO = { 
+      extension: compileForm.language, 
+      content: compileForm.code 
+  }; 
+    const token = accessToken; 
+
+    await downloadFile(fileVO, token);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,6 +62,8 @@ const IDEPage: React.FC<IDEPageProps> = ({initialCompileForm }) => {
       setLoading(false);
     }
   };
+
+  
 
   useEffect(() => {
     
@@ -69,6 +86,7 @@ const IDEPage: React.FC<IDEPageProps> = ({initialCompileForm }) => {
               value={compileForm.language}
             />
             <CompileButton type="submit">Run</CompileButton>
+            {accessToken && (<CodeSaveButton type="button" onClick={handleDownload}>Save</CodeSaveButton>)}
           </CompileLanguageContainer>
           <Content>
             <CodeEditorContainer>

@@ -6,6 +6,7 @@ import { verifyInput } from "../../handler/verificationApi"; // verifyInput 핸�
 import NavigationBar from "../navigationbar/navgivationBar";
 import { Logo,LogoLink } from '../../styles/logo';
 import { Container, Header } from '../../styles/container';
+import { Button, CodeSection, Footer, MainSection, SectionHeader, VerificationResultSection } from "../../styles/submissions";
 interface LocationState {
   language: string;
 }
@@ -48,23 +49,25 @@ const SubmissionDetailPage: React.FC = () => {
           <Logo>CPS</Logo>
         </LogoLink>
       </Header>
-      <div style={{ textAlign: 'right' }}> {/* 버튼 오른쪽 정렬 */}
-          <button onClick={handleVerifyCode}>코드 검증</button>
-        </div>
-      <div className="container" style={{ display: "flex" }}>{/* Flexbox 스타일 적용 */}
-        <div className="left" style={{ flex: 1, marginRight: "20px" }}>{/* 왼쪽 영역 */}
+
+      <MainSection>
+      <CodeSection>
+          <SectionHeader bgColor="#E1E1E1" ftColor="#000000" >제출한 코드</SectionHeader>
           <CodeEditor
             compileForm={compileForm}
             setCompileForm={setCompileForm}
-            style={{ width: "90%", height: "700px" }}
+            style={{ width: "100%", height: "660px"  }}
             readOnly={true}
           />
-        </div>
-        <div className="right" style={{ flex: 1 }}>{/* 오른쪽 영역 */}
-          <label>검증 결과:</label>
-          <div>{verificationResult}</div>
-        </div>
-      </div>
+        </CodeSection>
+        <VerificationResultSection>
+          <SectionHeader bgColor="#666666" ftColor="#ffffff">코드 분석 결과</SectionHeader>
+            <div>{verificationResult}</div>
+        </VerificationResultSection>
+      </MainSection>
+      <Footer>
+        <Button onClick={handleVerifyCode}>코드 분석</Button>
+      </Footer>
     </Container>
   );
 };

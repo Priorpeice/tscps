@@ -30,9 +30,10 @@ export const SearchBar = styled.input`
 export const Button = styled.button`
     padding: 8px 16px;
     font-size: 16px;
+    font-weight: bold;
     border: none;
     border-radius: 4px;
-    background-color: #007bff;
+    background-color: #1B2834;
     color: #fff;
     cursor: pointer;
     margin-top: 10px;
@@ -67,9 +68,9 @@ export const TableCell = styled.td`
 
 export const Footer = styled.footer`
     display: flex;
+    text-align: center;
     justify-content: center;
-    padding: 10px 0;
-    border-top: 1px solid #ddd;
+    padding: 8px 0;
     margin-top: 20px;
 `;
 
@@ -81,4 +82,37 @@ export const ResultSuccess = styled.span`
 export const ResultFailure = styled.span`
     color: red;
     font-weight: bold;
+`;
+
+export const MainSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding-top: 20px;
+  width: 80%;
+  height: 680px;
+`;
+
+export const CodeSection = styled.div`
+  flex: 1;
+  border: 1px solid black;
+  height:700px;
+`;
+
+export const VerificationResultSection = styled.div`
+  flex: 1;
+  height: 700px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 1px solid black;
+`;
+
+export const SectionHeader = styled.div<{ bgColor: string , ftColor : string}>`
+  background-color: ${(props) => props.bgColor};
+  color: ${(props) => props.ftColor};
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
 `;

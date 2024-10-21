@@ -1,21 +1,31 @@
-import React, { useState,useEffect } from 'react';
+// src/component/ForbiddenRedirect.tsx
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import {LoginPopup} from '../components/login/loginPopUp'; // 로그인 폼 컴포넌트 import
-import ReactModal from 'react-modal';
-const ForbiddenRedirect = () => {
+import { useDispatch, useSelector } from 'react-redux';
+import { clearError } from '../store/errorSlice';
+import { LoginPopup } from '../components/login/loginPopUp'; 
+import { RootState } from '../store/store'; 
+
+const ForbiddenRedirect: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const errorCode = useSelector((state: RootState) => state.error.code);
 
-  useEffect(() => {
-    const { state } = location;
-    setIsOpen(true);
-    
-  }, [location]);
+  useEffect(() => { 
+    if (errorCode) {
+      setIsOpen(true); 
+    }
+  }, [errorCode, dispatch]);
 
+  const closeModal = () => {
+    setIsOpen(false);
+    dispatch(clearError()); 
+    // navigate('/'); 
+  };
 
-
-  return <LoginPopup isOpen = {isOpen} closeModal={(()=> {setIsOpen(false); navigate('/');})}/>; // 로그인 팝업 렌더링
+  return <LoginPopup isOpen={isOpen} closeModal={closeModal} />;
 };
 
 export default ForbiddenRedirect;

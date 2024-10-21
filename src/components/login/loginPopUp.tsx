@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './loginform.css';
 import { Vector } from '../../styles/mainStyle';
+import { useDispatch } from 'react-redux';
+import { setAccessToken } from '../../store/authSlice';
 
 
 interface ModalButtonProps {
@@ -24,6 +26,7 @@ interface LoginContentProps {
 const LoginPopup: React.FC<LoginContentProps> = ({ isOpen, closeModal }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
@@ -41,9 +44,8 @@ const LoginPopup: React.FC<LoginContentProps> = ({ isOpen, closeModal }) => {
         memberId: username,
         password: password
       });
-      
-      // accessToken과 refreshToken을 로컬 스토리지에 저장
-      localStorage.setItem('accessToken', response.data.accessToken);
+      const token = response.data.accessToken;
+      dispatch(setAccessToken(token));
       localStorage.setItem('refreshToken', response.data.refreshToken);
       closeModal();
     } catch (error:any) {

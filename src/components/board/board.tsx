@@ -8,17 +8,20 @@ import { handleCommentSubmit } from '../comment/handler/commentHandler';
 import { Board } from '../../interface/board';
 import { ApiResponse } from '../../interface/response';
 import { Logo,LogoLink } from '../../styles/logo';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import axiosInstance from '../../utils/axiosInstance';
 const PostDetail: React.FC = () => {
     const { boardId } = useParams<{ boardId: string }>(); // Specify the type of useParams
     const [board, setBoard] = useState<Board | null>(null); // Specify the type of useState
     const [newComment, setNewComment] = useState<string>('');
-    const accessToken: string | null = localStorage.getItem('accessToken');
+    const accessToken = useSelector((state: RootState) => state.accessToken.accessToken); 
     const commentInputRef = useRef<HTMLTextAreaElement>(null); // CommentPostBar에 대한 참조
 
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const response = await axios.get<ApiResponse<Board>>(`/api/board/${boardId}`); // Specify the type of axios.get
+                const response = await axiosInstance.get<ApiResponse<Board>>(`/api/board/${boardId}`); // Specify the type of axios.get
                 setBoard(response.data.object);
         
             } catch (error) {

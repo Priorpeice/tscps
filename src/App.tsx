@@ -16,28 +16,34 @@ import AllSubmissionsListPage from './components/submission/allSubmissionList';
 import SubmissionsListPage from './components/submission/submissionList';
 import SubmissionsDetailPage from './components/submission/submissionDetail';
 import MyPage from './components/myPage/myPage';
+import ForbiddenRedirect from './handler/forbiddenRedirect';
+import { useSelector } from 'react-redux';
+import { RootState } from './store/store';
 const App = () => {
+  const errorCode = useSelector((state: RootState) => state.error.code); 
   return (
-
-      <Routes>
+    <>
+    {errorCode && <ForbiddenRedirect />} 
+    <Routes>
       <Route path="/" element={<MainPage />} />
-        <Route path="/ide" element={<IDEPage />} />
-        <Route path="/result" element={<CompileResultPage />} />
-        <Route path="/problems" element={<ProblemPage />} />
-        <Route path="/boards" element={<BoardPage />} />
-        <Route path="/board/:boardId" element={<PostDetail />} />
-        <Route path="/problem/:problemId" element={<ProblemDetails/>} />
-        <Route path="/board/write" element={<BoardCreationPage/>}/>
-        <Route path="/problem/write" element={<ProblemCreationPage/>}/>
-        <Route path="/register" element={<MemberRegisterPage/>}/>
-        <Route path="/verification" element={<VerificationPage/>}/>
-        <Route path="/problem/:problemId/submit" element={<SubmissionPage/>}/>
-        <Route path="/submissions" element={<AllSubmissionsListPage/>}/>
-        <Route path="/submission/:problemId" element={<SubmissionsListPage/>}/>
-        <Route path="/submission/detail/:submissionId" element={<SubmissionsDetailPage/>}/>
-        <Route path="/myPage" element={<MyPage/>}/>
-      </Routes>
- 
+      <Route path="/ide" element={<IDEPage />} />
+      <Route path="/result" element={<CompileResultPage />} />
+      <Route path="/problems" element={<ProblemPage />} />
+      <Route path="/boards" element={<BoardPage />} />
+      <Route path="/board/:boardId" element={<PostDetail />} />
+      <Route path="/problem/:problemId" element={<ProblemDetails />} />
+      <Route path="/board/write" element={<BoardCreationPage />} />
+      <Route path="/problem/write" element={<ProblemCreationPage />} />
+      <Route path="/register" element={<MemberRegisterPage />} />
+      <Route path="/verification" element={<VerificationPage />} />
+      <Route path="/problem/:problemId/submit" element={<SubmissionPage />} />
+      <Route path="/submissions" element={<AllSubmissionsListPage />} />
+      <Route path="/submission/:problemId" element={<SubmissionsListPage />} />
+      <Route path="/submission/detail/:submissionId" element={<SubmissionsDetailPage />} />
+      <Route path="/myPage" element={<MyPage />} />
+    </Routes>
+  </>
+
   );
 };
 

@@ -16,6 +16,7 @@ import {
   CopyButton,
   SubmitLinkButton
 } from '../../styles/problem';
+import axiosInstance from '../../utils/axiosInstance';
 
 const ProblemDetails: React.FC = () => {
   const { problemId } = useParams<{ problemId: string }>();
@@ -25,7 +26,7 @@ const ProblemDetails: React.FC = () => {
   useEffect(() => {
     const fetchProblem = async () => {
       try {
-        const response = await axios.get<Problem>(`/api/problem/${problemId}`);
+        const response = await axiosInstance.get<Problem>(`/problem/${problemId}`);
         setProblem(response.data);
         setLoading(false);
       } catch (error) {

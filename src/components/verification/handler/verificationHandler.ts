@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosInstance from '../../../utils/axiosInstance';
 
 export const handleVeriSubmit = async (
   e: React.FormEvent, 
@@ -7,7 +8,7 @@ export const handleVeriSubmit = async (
 ) => {
   e.preventDefault();
   try {
-    const response = await axios.post('/api/verification', { question: inputValue });
+    const response = await axiosInstance.post('/verification', { question: inputValue });
     setOutputValue(response.data.object.response);
   } catch (error) {
     console.error('Error during verification:', error);

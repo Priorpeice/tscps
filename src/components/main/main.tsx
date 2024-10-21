@@ -6,18 +6,13 @@ import problemImage from '../../image/problem.png';
 import authImage from '../../image/auth.png';
 import userImage from '../../image/user.png';
 import { ModalButton, LoginPopup } from '../login/loginPopUp'; // 컴포넌트 import
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 const MainPage: React.FC = () => {
   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
-  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const accessToken = useSelector((state: RootState) => state.accessToken.accessToken);
 
-  useEffect(() => {
-    // 페이지가 처음 렌더링될 때 localStorage에서 accessToken을 가져옴
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      setAccessToken(token);
-    }
-  }, []);
 
   const openPopup = () => {
     setIsPopupOpen(true);

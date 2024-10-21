@@ -21,7 +21,7 @@ const PostDetail: React.FC = () => {
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const response = await axiosInstance.get<ApiResponse<Board>>(`/api/board/${boardId}`); // Specify the type of axios.get
+                const response = await axiosInstance.get<ApiResponse<Board>>(`/board/${boardId}`); // Specify the type of axios.get
                 setBoard(response.data.object);
         
             } catch (error) {

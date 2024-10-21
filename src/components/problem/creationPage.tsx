@@ -8,6 +8,9 @@ import { CreationContainer, Form, FormGroup, Label, Input, Textarea,InAndOutput,
 import { Container, Header } from '../../styles/container';
 import NavigationBar from '../navigationbar/navgivationBar';
 import { Logo, LogoLink } from '../../styles/logo';
+import axiosInstance from '../../utils/axiosInstance';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 const CreateProblemPage: React.FC = () => {
     const [title, setTitle] = useState<string>('');
@@ -15,7 +18,7 @@ const CreateProblemPage: React.FC = () => {
     const [inputs, setInputs] = useState<string[]>(['']);
     const [outputs, setOutputs] = useState<string[]>(['']);
     const [isForbidden, setIsForbidden] = useState(false);
-    const accessToken: string | null = localStorage.getItem('accessToken');
+    const accessToken= useSelector((state: RootState) => state.accessToken.accessToken);
     const navigate = useNavigate(); 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -28,7 +31,7 @@ const CreateProblemPage: React.FC = () => {
         }
         
         try {
-            const response = await axios.post('/api/problem', {
+            const response = await axiosInstance.post('/problem', {
                 title,
                 content,
                 inputs,

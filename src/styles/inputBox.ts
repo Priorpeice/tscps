@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const InputBoxWrapper = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: 1px;
 `;
 
 export const Label = styled.label`
@@ -19,7 +19,7 @@ export const Label = styled.label`
 
 export const TextArea = styled.textarea`
   width: 100%; /* Make the textarea take the full width of its container */
-  height: 100px; /* Fixed height */
+  height: 300px; /* Fixed height */
   resize: none; /* Disable resizing */
   padding: 10px;
   background-color: white;

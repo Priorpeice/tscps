@@ -25,7 +25,7 @@ export const IdeHeader = styled.header`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 95%;
   height: calc(100% - 60px);
   margin-top: 10px;
 
@@ -77,6 +77,7 @@ export const Panel = styled.div`
 
 export const CompileButton = styled.button`
   background-color: #0066CC;
+  height:30px;
   color: white;
   border: none;
   padding: 5px 10px;
@@ -87,6 +88,7 @@ export const CompileButton = styled.button`
 
 export const CodeSaveButton = styled.button`
   background-color: #AB38AD;
+  height:30px;
   color: white;
   border: none;
   padding: 5px 10px;

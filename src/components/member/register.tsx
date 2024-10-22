@@ -13,6 +13,7 @@ import {
   SubmissionButton
 } from '../../styles/register';
 import { FormData } from '../../interface/memberForm';
+import axiosInstance from '../../utils/axiosInstance';
 
 
 
@@ -41,7 +42,7 @@ const SignupForm: React.FC = () => {
 
   const handleDuplicateCheck = async () => {
     try {
-      const response = await axios.get(`/api/auth/member/duplicate?loginId=${formData.id}`);
+      const response = await axiosInstance.get(`/auth/member/duplicate?loginId=${formData.id}`);
       setIsIdAvailable(!response.data);
       alert(response.data ? '중복된 아이디입니다.' :'사용 가능한 아이디입니다.');
     } catch (error) {

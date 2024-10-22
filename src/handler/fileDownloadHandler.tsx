@@ -1,13 +1,14 @@
 
 import axios from 'axios';
 import { FileVO } from '../interface/fileVO';
+import axiosInstance from '../utils/axiosInstance';
 export const downloadFile = async (FileVO: FileVO,  token: string | null): Promise<void> => {
      if (!token) {
         console.error('Token is null. Download cannot proceed.');
         return; 
     }
     try {
-        const response = await axios.post('/api/fileDownload/', FileVO, {
+        const response = await axiosInstance.post('/fileDownload/', FileVO, {
             responseType: 'blob', // 응답 유형을 blob으로 설정
             headers: {
                 Authorization: `Bearer ${token}`, // 필요한 경우 Authorization 헤더 추가

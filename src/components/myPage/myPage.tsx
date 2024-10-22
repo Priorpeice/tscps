@@ -22,20 +22,22 @@ import {
 } from "../../styles/Mypage";
 import { MemberInfo } from "../../interface/memberInfo";
 import { BlueLogo,LogoLink } from "../../styles/logo";
+import axiosInstance from "../../utils/axiosInstance";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 const MyPage: React.FC = () => {
   const [member, setMember] = useState<MemberInfo | null >(null);
   const [isForbidden, setIsForbidden] = useState(false);
+  const accessToken = useSelector((state: RootState) => state.accessToken.accessToken);
   const handleApiCall = async () => {
-    const accessToken = localStorage.getItem("accessToken");
-    
     if (!accessToken) {
       console.error("Access token not found in localStorage");
       return;
     }
 
     try {
-      const response = await axios.get(`/api/member/details`, {
+      const response = await axiosInstance.get(`/member/details`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,

@@ -29,6 +29,8 @@ import {
   Input,
 } from "../../styles/allSubmission";
 import { CodeEditorContainer } from "../../styles/allSubmission";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 const SubmissionPage: React.FC = () => {
   const initialCompileForm: CompileForm = {
@@ -40,7 +42,7 @@ const SubmissionPage: React.FC = () => {
   const [compileForm, setCompileForm] =
     useState<CompileForm>(initialCompileForm);
   const [output, setOutput] = useState<string | null>(null);
-  const accessToken: string | null = localStorage.getItem("accessToken");
+  const accessToken= useSelector((state: RootState) => state.accessToken.accessToken);
   const [loading, setLoading] = useState(false);
   const [isForbidden, setIsForbidden] = useState(false);
   const navigate = useNavigate(); // Hook for navigation

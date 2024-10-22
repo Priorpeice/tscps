@@ -7,6 +7,7 @@ import NavigationBar from "../navigationbar/navgivationBar";
 import { Logo,LogoLink } from '../../styles/logo';
 import { Container, Header } from '../../styles/container';
 import { Button, CodeSection, Footer, MainSection, SectionHeader, VerificationResultSection } from "../../styles/submissions";
+import axiosInstance from "../../utils/axiosInstance";
 interface LocationState {
   language: string;
 }
@@ -21,8 +22,8 @@ const SubmissionDetailPage: React.FC = () => {
   const [verificationResult, setVerificationResult] = useState<string>(""); // 검증 결과 상태
 
   useEffect(() => {
-    axios
-      .get(`/api/submission/detail/${submissionId}`)
+    axiosInstance
+      .get(`/submission/detail/${submissionId}`)
       .then((response) => {
         const object = response.data.object;
         setCompileForm((prevForm) => ({

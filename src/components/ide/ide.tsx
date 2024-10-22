@@ -23,6 +23,8 @@ import {
   CodeSaveButton,
 } from '../../styles/ide';
 import { downloadFile } from '../../handler/fileDownloadHandler';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 interface IDEPageProps {
   initialRows?: number;
@@ -39,9 +41,8 @@ const IDEPage: React.FC<IDEPageProps> = ({initialCompileForm }) => {
   );
   const [compilationResult, setCompilationResult] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  
-   // accessToken을 localStorage에서 가져옴
-   const accessToken: string | null = localStorage.getItem('accessToken');
+
+  const accessToken =useSelector((state: RootState) => state.accessToken.accessToken);
 
   const handleDownload = async () => {
     const fileVO = { 

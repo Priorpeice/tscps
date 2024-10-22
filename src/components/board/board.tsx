@@ -1,7 +1,7 @@
 import React, { useState, useEffect ,useRef, useLayoutEffect } from 'react';
 import axios from 'axios';
 import { useParams,Link } from 'react-router-dom';
-import { PostTitleBox, PostBox, PostContentBox, CommentBox,CommentsHeader, PostAndCommentBox, CommentPostBar, CommentTitleBox, CommentContentBox, CommentTitleContentBox, MessageButton ,MessageContainer} from '../../styles/board';
+import { PostTitleBox, PostBox, PostContentBox, CommentBox,CommentsHeader, PostAndCommentBox, CommentPostBar, CommentTitleBox, CommentContentBox, CommentTitleContentBox, MessageButton ,MessageContainer, CommentParagraph} from '../../styles/board';
 import NavigationBar from '../navigationbar/navgivationBar';
 import { Container, Header } from '../../styles/container';
 import { handleCommentSubmit } from '../comment/handler/commentHandler';
@@ -71,7 +71,7 @@ const PostDetail: React.FC = () => {
                         {board.comments.map((comment) => (
                             <CommentTitleContentBox key={comment.id}>
                                 <CommentTitleBox>
-                                  <p>{comment.id} 작성자: {comment.nickname}</p>  
+                                  <CommentParagraph>{comment.id} {comment.nickname}</CommentParagraph>  
                                    {/* {comment.regDate} */}
                                 </CommentTitleBox>
                                 <CommentContentBox>

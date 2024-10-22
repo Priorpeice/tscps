@@ -37,7 +37,7 @@ export const RectangleBox = styled.div`
   height: 10vw;
   background: #FFFFFF;
   border: 0.5px solid #3F3F3F;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
   border-radius: 40%;
 `;
 export const UserIcon = styled.img`

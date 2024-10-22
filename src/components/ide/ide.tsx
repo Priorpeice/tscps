@@ -80,12 +80,14 @@ const IDEPage: React.FC<IDEPageProps> = ({initialCompileForm }) => {
       </Header>
       <Content>
         <form onSubmit={handleSubmit} style={{ width: '100%', height: '100%' }}>
+        <label htmlFor="compileLanguage" style={{ fontSize: '14px' , marginLeft: '12px' }}>Select Language</label>
           <CompileLanguageContainer>
             <CompileLanguageSelect
               languageOptions={languageOptions}
               handleCompileChange={(e: any) => handleCompileChange(e, compileForm, setCompileForm)}
               value={compileForm.language}
             />
+            <label></label>
             <CompileButton type="submit">Run</CompileButton>
             {accessToken && (<CodeSaveButton type="button" onClick={handleDownload}>Save</CodeSaveButton>)}
           </CompileLanguageContainer>
@@ -94,7 +96,7 @@ const IDEPage: React.FC<IDEPageProps> = ({initialCompileForm }) => {
               <CodeEditor
                 compileForm={compileForm}
                 setCompileForm={setCompileForm}
-                style={{ width: '100%', height: '700px' }}
+                style={{ width: '99%', height: '700px',padding:'5px'}}
               />
             </CodeEditorContainer>
             <InputOutputContainer>
@@ -110,8 +112,10 @@ const IDEPage: React.FC<IDEPageProps> = ({initialCompileForm }) => {
                   {loading && <p>Loading...</p>}
                   {!loading && compilationResult && (
                     <>
-                      <h3>Compilation Result:</h3>
-                      <pre>{compilationResult}</pre>
+                      <h3>Compilation Result</h3>
+                      <pre style={{ maxHeight: '200px', overflowY: 'auto' }}>
+                        {compilationResult}
+                      </pre>
                     </>
                   )}
                 </CompilationResult>

@@ -68,7 +68,15 @@ const SubmissionDetailPage: React.FC = () => {
         </CodeSection>
         <VerificationResultSection>
           <SectionHeader bgColor="#666666" ftColor="#ffffff">코드 분석 결과</SectionHeader>
-            <div>{verificationResult}</div>
+          <div style={{
+            whiteSpace: 'pre-line',
+            maxHeight: '700px', 
+            overflowY: 'auto', 
+            border: '1px solid #ccc', 
+            padding: '10px' 
+          }}>
+            {verificationResult}
+          </div>
         </VerificationResultSection>
       </MainSection>
       <Footer>

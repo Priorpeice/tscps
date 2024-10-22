@@ -42,11 +42,19 @@ import styled from 'styled-components';
 
 export const SelectWrapper = styled.div`
   margin: 10px 0;
+  &::after {
+    content: '▼'; 
+    pointer-events: none;
+    color:  #1B2834;
+  }
 `;
 
 export const Select = styled.select`
   padding: 8px;
-  font-size: 14px;
+  width: 160px;
+  height:30px;
+  font-size: 12px;
+  font-weight : bold;
   border: 1px solid #ccc;
   border-radius: 4px;
   outline: none;

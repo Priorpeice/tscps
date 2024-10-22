@@ -40,9 +40,8 @@ width: 48vh; /* 변경 */
 height: 4.63vh; /* 변경 */
 left: 0vh; /* 변경 */
 top: 0vh;
+padding-left:15px;
 border-bottom: 0.0535vh solid #ddd;
-
-
 font-family: 'Inter';
 font-style: normal;
 font-weight: 700;
@@ -63,24 +62,43 @@ export const PostContentBox = styled.div`
 
 export const CommentPostBar = styled.textarea`
   box-sizing: border-box;
-  width: 100%; 
+  width: 95%; 
   height: 3.33vh; 
   border: none; 
   margin: 0; 
   padding: 7px; 
 `;
 
+export const CommentParagraph = styled.p`
+  margin: 10px; 
+  font-weight: bold;
+  font-size: 15px;
+`;
 
 export const CommentTitleBox = styled.div`
   position: relative;
+  display: flex;
+  justify-content: flex-end; 
   color: black; /* 텍스트 색상 설정 */
-  display: inline-block; /* 컨텐츠가 옆에 나오도록 설정 */
-  margin-right: 10px; /* 댓글 사이의 간격 설정 */
-  
 `;
 export const CommentContentBox = styled.div`
   position: relative;
-  color: black; 
+  background: #f0f0f0;
+  border-radius: 10px;
+  padding: 15px;
+  max-width: 200px;
+   margin-left: auto;
+  
+  /* 말풍선 꼬리 */
+  ::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;  /* 꼬리의 위치 */
+    left: 20px;     /* 꼬리의 위치 */
+    border-width: 10px;
+    border-style: solid;
+    border-color: #f0f0f0 transparent transparent transparent; /* 말풍선 색에 맞춘 꼬리 */
+  }
 `;
 
 export const CommentTitleContentBox = styled.div`
@@ -92,6 +110,7 @@ export const MessageButton = styled.button`
 bottom:-5vh;
 background-image: url(${MessageIcon});
 background-size: cover;
+padding-right:5px;
 width: 2.5vh; 
 height: 2.5vh; 
 border: none;

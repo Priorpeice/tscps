@@ -25,7 +25,7 @@ export const IdeHeader = styled.header`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  width: 95%;
+  width: 97%;
   height: calc(100% - 60px);
   margin-top: 10px;
 
@@ -42,14 +42,14 @@ export const CompileLanguageContainer = styled.div`
 `;
 
 export const CodeEditorContainer = styled.div`
-  flex: 3;
+  flex: 7;
   display: flex;
   flex-direction: column;
   background-color: #2B3A47;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
-
+  width: 70%;
   @media (min-width: 768px) {
     margin-right: 10px;
     margin-bottom: 0;
@@ -57,7 +57,7 @@ export const CodeEditorContainer = styled.div`
 `;
 
 export const InputOutputContainer = styled.div`
-  flex: 1;
+  flex: 3;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -77,8 +77,10 @@ export const Panel = styled.div`
 
 export const CompileButton = styled.button`
   background-color: #0066CC;
+  width: 50px;
   height:30px;
   color: white;
+  font-weight : bold;
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
@@ -88,9 +90,11 @@ export const CompileButton = styled.button`
 
 export const CodeSaveButton = styled.button`
   background-color: #AB38AD;
+  width: 60px;
   height:30px;
   color: white;
   border: none;
+  font-weight : bold;
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;

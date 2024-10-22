@@ -11,8 +11,8 @@ import {
   persistStore,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import authSlice from "./authSlice";
-import errorSlice from "./errorSlice"; 
+import authSlice from "./slice/authSlice";
+import errorSlice from "./slice/errorSlice"; 
 
 const accessTokenPersistConfig = {
   key: "root",

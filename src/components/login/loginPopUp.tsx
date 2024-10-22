@@ -5,7 +5,7 @@ import axios from 'axios';
 import './loginform.css';
 import { Vector } from '../../styles/mainStyle';
 import { useDispatch } from 'react-redux';
-import { setAccessToken } from '../../store/authSlice';
+import { setAccessToken } from '../../store/slice/authSlice';
 
 
 interface ModalButtonProps {
@@ -44,9 +44,10 @@ const LoginPopup: React.FC<LoginContentProps> = ({ isOpen, closeModal }) => {
         memberId: username,
         password: password
       });
-      const token = response.data.accessToken;
+     
+      const token = response.data.object.accessToken;
       dispatch(setAccessToken(token));
-      localStorage.setItem('refreshToken', response.data.refreshToken);
+      // localStorage.setItem('refreshToken', response.data.object.refreshToken);
       closeModal();
     } catch (error:any) {
       console.error('Login failed!', error.response?.data);

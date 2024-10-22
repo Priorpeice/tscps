@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearError } from '../store/errorSlice';
+import { clearError } from '../store/slice/errorSlice';
 import { LoginPopup } from '../components/login/loginPopUp'; 
 import { RootState } from '../store/store'; 
 

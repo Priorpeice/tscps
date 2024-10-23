@@ -12,8 +12,8 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import authSlice from "./slice/authSlice";
-import errorSlice from "./slice/errorSlice"; 
-
+import errorSlice from "./slice/errorSlice";
+import popupReducer from"./slice/loginPopUp";
 const accessTokenPersistConfig = {
   key: "root",
   storage,
@@ -28,6 +28,7 @@ export const store = configureStore({
   reducer: {
     accessToken: persistedAccessTokenReducer,
     error: errorSlice, 
+    popup: popupReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

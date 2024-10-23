@@ -68,6 +68,8 @@ export const Button = styled.button`
   border: 0.0535vh solid #C6C6C6; 
   color: #fff;
   cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
 `;
 
 export const SearchBar = styled.input`

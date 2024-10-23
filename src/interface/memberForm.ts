@@ -5,6 +5,6 @@ export interface FormData {
     name: string;
     nickname: string;
     phone: string;
-    scode: number;
+    scode: string;
     email: string;
   }

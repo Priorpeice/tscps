@@ -41,7 +41,8 @@ export const DuplicateCheckButton = styled.button`
   border-radius: 4px;
   padding: 10px 15px;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 5px;
+  margin-bottom:5px;
 
   &:hover {
     background-color: #0056b3;

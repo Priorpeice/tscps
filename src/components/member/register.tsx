@@ -27,7 +27,7 @@ const SignupForm: React.FC = () => {
     doubleCheckPw: '',
     nickname: '',
     phone: '',
-    scode: 0,
+    scode: '',
     email: ''
   });
 
@@ -136,7 +136,7 @@ const SignupForm: React.FC = () => {
 
           <InputLabel htmlFor="scode">학번:</InputLabel>
           <InputField
-            type="number"
+            type="text"
             id="scode"
             name="scode"
             value={formData.scode.toString()}

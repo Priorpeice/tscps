@@ -1,25 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Frame, MainHeader, CpsLogo, RectangleBox, Vector, IdeText, ProblemText, VerificationText, PcCheckIcon, TerminalIcon, UserIcon, MathSymbolsIcon, Popup } from '../../styles/mainStyle'; // styled-components import
+import {
+  Frame,
+  MainHeader,
+  CpsLogo,
+  RectangleBox,
+  Vector,
+  IdeText,
+  ProblemText,
+  VerificationText,
+  PcCheckIcon,
+  TerminalIcon,
+  UserIcon,
+  MathSymbolsIcon,
+  Popup
+} from '../../styles/mainStyle'; 
 import ideImage from '../../image/terminal.png';
 import problemImage from '../../image/problem.png';
 import authImage from '../../image/auth.png';
 import userImage from '../../image/user.png';
-import { ModalButton, LoginPopup } from '../login/loginPopUp'; // 컴포넌트 import
-import { useSelector } from 'react-redux';
+import { ModalButton, LoginPopup } from '../login/loginPopUp'; 
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { openPopup,closePopup } from '../../store/slice/loginPopUp';
 
 const MainPage: React.FC = () => {
-  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+  const isPopupOpen = useSelector((state: RootState) => state.popup.isPopupOpen);
+  const dispatch = useDispatch();
   const accessToken = useSelector((state: RootState) => state.accessToken.accessToken);
 
-
-  const openPopup = () => {
-    setIsPopupOpen(true);
+  // 팝업 열기
+  const handleOpenPopup = () => {
+    dispatch(openPopup());
   };
 
-  const closePopup = () => {
-    setIsPopupOpen(false);
+  // 팝업 닫기
+  const handleClosePopup = () => {
+    dispatch(closePopup());
   };
 
   return (
@@ -34,13 +51,13 @@ const MainPage: React.FC = () => {
       {/* Conditional rendering based on accessToken */}
       {accessToken ? (
         <Link to="/myPage">
-         <Vector>profile</Vector>
+          <Vector>profile</Vector>
         </Link>
       ) : (
-        <ModalButton openModal={openPopup} />
+        <ModalButton openModal={handleOpenPopup} /> 
       )}
 
-      <LoginPopup isOpen={isPopupOpen} closeModal={closePopup} />
+      <LoginPopup isOpen={isPopupOpen} closeModal={handleClosePopup} /> {/* 팝업 상태에 따른 컴포넌트 렌더링 */}
       <Link to="/ide">
         <IdeText>IDE</IdeText>
       </Link>
@@ -50,17 +67,17 @@ const MainPage: React.FC = () => {
       <Link to="/verification">
         <VerificationText>verification</VerificationText>
       </Link>
-      
+
       {/* 아이콘 이미지 */}
       <Link to="/verification">
-      <PcCheckIcon src={authImage} alt="PC Check Icon" />
+        <PcCheckIcon src={authImage} alt="PC Check Icon" />
       </Link>
       <Link to="/ide">
-      <TerminalIcon src={ideImage} alt="Terminal Icon" />
+        <TerminalIcon src={ideImage} alt="Terminal Icon" />
       </Link>
       <UserIcon src={userImage} alt="Rectangle" />
       <Link to="/problems">
-      <MathSymbolsIcon src={problemImage} alt="Math Symbols Icon" />
+        <MathSymbolsIcon src={problemImage} alt="Math Symbols Icon" />
       </Link>
       <Popup id="popup" />
     </Frame>

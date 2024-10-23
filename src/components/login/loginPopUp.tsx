@@ -42,8 +42,7 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ isOpen, closeModal }) => {
       dispatch(setAccessToken(token));
       closeModal();
     } catch (error:any) {
-      let stausCode = error.response.data.object.stausCode; 
-      if(stausCode== 'LG01'||stausCode== 'LG02')
+      if(error.response?.status)
       {
         alert("ID 또는 PW가 잘못입력되었습니다.");
       }

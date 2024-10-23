@@ -19,7 +19,9 @@ export const SubmitLinkButton = styled.button`
   color: white;
   border: none;
   padding: 5px 10px;
+  margin-right: 10px;
   cursor: pointer;
+  font-weight:bold;
 `;
 
 export const InfoTable = styled.table`

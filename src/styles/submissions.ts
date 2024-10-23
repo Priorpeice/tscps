@@ -50,7 +50,7 @@ export const Table = styled.table`
 
 export const TableHeader = styled.th`
     background-color: #f4f4f4;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #ddd;
 `;
 

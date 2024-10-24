@@ -3,7 +3,9 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { store } from '../store/store';// 스토어 가져오기
 import { setError,clearError } from '../store/slice/errorSlice';
 import { getCookie } from '../store/cookieUtils';
-import { accessToken } from '../store/slice/authSlice';
+import { accessToken, setAccessToken } from '../store/slice/authSlice';
+import Cookies from 'js-cookie';
+import { useDispatch } from 'react-redux';
 
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL || '/api', // 기본 URL 설정
@@ -11,10 +13,26 @@ const axiosInstance = axios.create({
 
 /*요청 instance*/
 axiosInstance.interceptors.request.use(
-  (config) => { 
+  async (config) => { 
     const accessToken = store.getState().accessToken.accessToken; // Redux 스토어에서 accessToken 가져오기
+    const refreshToken = Cookies.get('refreshToken');
+    const dispatch = useDispatch();
+    
     if (accessToken && config.headers) {
       config.headers['Authorization'] = `Bearer ${accessToken}`;
+    }
+    else if(!accessToken && refreshToken) 
+    {
+      try{
+        const response = await axios.post('/auth/rt', { refreshToken });
+        const token = response.data.object.accessToken;
+        dispatch(setAccessToken(token));
+        config.headers['Authorization'] = `Bearer ${token}`;
+      }
+      catch(error:any)
+      {
+        return Promise.reject(error);
+      }
     }
     return config;
   },

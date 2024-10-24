@@ -19,6 +19,7 @@ const accessTokenPersistConfig = {
   storage,
 };
 
+/*accessToken은 영속성으로 관리 x*/
 const persistedAccessTokenReducer = persistReducer(
   accessTokenPersistConfig,
   authSlice
@@ -26,7 +27,7 @@ const persistedAccessTokenReducer = persistReducer(
 
 export const store = configureStore({
   reducer: {
-    accessToken: persistedAccessTokenReducer,
+    accessToken: authSlice,
     error: errorSlice, 
     popup: popupReducer,
   },

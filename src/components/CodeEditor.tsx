@@ -6,6 +6,9 @@ import 'ace-builds/src-noconflict/mode-python';
 import 'ace-builds/src-noconflict/mode-java';
 import 'ace-builds/src-noconflict/mode-c_cpp';
 import 'ace-builds/src-noconflict/theme-github';
+import 'ace-builds/src-noconflict/theme-tomorrow_night'; 
+import 'ace-builds/src-noconflict/mode-dart';
+import 'ace-builds/src-noconflict/mode-swift';
 
 interface Props {
   compileForm: {
@@ -14,10 +17,9 @@ interface Props {
   };
   setCompileForm: React.Dispatch<React.SetStateAction<{
     language: string;
-    code: string;
-  }>>;
-  style?: React.CSSProperties; // Add style prop
-  readOnly?: boolean; // Add readOnly prop
+    code: string }>>;
+  style?: React.CSSProperties; 
+  readOnly?: boolean; 
 }
 
 const CodeEditor: React.FC<Props> = ({ compileForm, setCompileForm, style, readOnly = false }) => { // Default to false for readOnly
@@ -29,34 +31,38 @@ const CodeEditor: React.FC<Props> = ({ compileForm, setCompileForm, style, readO
 
   const getAceMode = (language: string): string => {
     switch (language) {
-      case 'java':
-        return 'java';
-      case 'py':
-        return 'python';
-      case 'c':
-      case 'cpp':
-        return 'c_cpp';
-      case 'js':
-        return 'javascript';
-      case 'dart':
-        return 'javascript';
+      case "java":
+        return "java";
+      case "py":
+        return "python";
+      case "c":
+      case "cpp":
+        return "c_cpp";
+      case "js":
+        return "javascript";
+      case "dart":
+        return "javascript";
+      case "swift":
+        return "swift";
       default:
-        return 'text';
+        return "text";
     }
   };
 
   const getAceTheme = (language: string): string => {
     switch (language) {
-      case 'java':
-      case 'c':
-      case 'cpp':
-      case 'dart':
-        return 'monokai';
-      case 'py':
-      case 'js':
-        return 'github';
+      case "java":
+      case "c":
+      case "cpp":
+      case "dart":
+        return "monokai";
+      case "py":
+      case "js":
+        return "github";
+      case "swift":
+        return "tomorrow_night";
       default:
-        return 'textmate';
+        return "textmate";
     }
   };
 

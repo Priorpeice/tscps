@@ -4,7 +4,7 @@ import MainPage from './components/main/main';
 import IDEPage from './components/ide/ide';
 import PostDetail from './components/board/board';
 import ProblemDetails from './components/problem/problem';
-import CompileResultPage from './components/result'; // 결과 창 페이지 컴포넌트의 경로에 따라 수정
+import CompileResultPage from './components/result'; 
 import BoardPage from './components/board/boards';
 import ProblemPage from './components/problem/problems';
 import BoardCreationPage from './components/board/creationPage';

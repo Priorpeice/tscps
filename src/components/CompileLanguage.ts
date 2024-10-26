@@ -5,4 +5,5 @@ export const languageOptions = [
     { value: 'cpp', label: 'C++' },
     { value: 'js', label: 'JavaScript' },
     { value: 'dart', label: 'Dart' },
+    { value: 'swift', label: 'Swift' },
   ];

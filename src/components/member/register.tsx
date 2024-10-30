@@ -34,7 +34,11 @@ const SignupForm: React.FC = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-   
+    if ((name === 'name') && /[^a-zA-Z]/.test(value)) {
+      alert('이름은 영어만 입력할 수 있습니다.');
+      setFormData({ ...formData, [name]: '' });
+      return; // 영어가 아닌 문자가 포함된 경우 입력을 무시
+    }
     if (name === 'id') {
       setIsIdAvailable(false);
     }
@@ -42,7 +46,7 @@ const SignupForm: React.FC = () => {
 
   const handleDuplicateCheck = async () => {
     try {
-      const response = await axiosInstance.get(`/auth/member/duplicate?loginId=${formData.id}`);
+      const response = await axios.get(`api/auth/member/duplicate?loginId=${formData.id}`);
       setIsIdAvailable(!response.data);
       alert(response.data ? '중복된 아이디입니다.' :'사용 가능한 아이디입니다.');
     } catch (error) {

@@ -67,9 +67,8 @@ const SubmissionPage: React.FC = () => {
       );
       setOutput(responseData);
       alert("제출이 완료되었습니다.");
-      navigate(`../../submission/${problemId}`); // Navigate to desired route
+      navigate(`../../submission/${problemId}`); 
     } catch (error:any) {
-
       if (error.status == 401) {
         setIsForbidden(true);
       } 

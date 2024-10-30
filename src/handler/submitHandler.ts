@@ -24,6 +24,7 @@ export const handleSubmission = async (compileForm: CompileForm, accessToken: st
 
   } catch (error:any) {
     console.error('서버 요청 중 오류 발생:', error);
-    throw error.response;
+    throw error;
   }
+  
 };

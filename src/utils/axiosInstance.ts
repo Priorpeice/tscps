@@ -2,7 +2,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { store } from '../store/store'; // 스토어 가져오기
 import { setError, clearError } from '../store/slice/errorSlice';
-import { getAllCookies, getCookie } from '../store/cookieUtils';
 import { setAccessToken } from '../store/slice/authSlice';
 import Cookies from 'js-cookie';
 
@@ -55,19 +54,17 @@ axiosInstance.interceptors.response.use(
 
       if (!isRefreshing) {
         isRefreshing = true;
-
+        
         try {
-       
-          const refreshToken = Cookies.get('refreshToken'); // 쿠키에서 refreshToken 가져오기
-          console.log(refreshToken);
-          const { data } = await axios.post<any>('/api/auth/rt', {}, {
-            headers: { 'Authorization': `Bearer ${refreshToken}` },
-          });
-
-          const newAccessToken = data.data.object.accessToken;
+          const { data } = await axios.post<any>('/api/auth/rt', {
+            id: localStorage.getItem('id') 
+          }, { withCredentials: true });
+          const newAccessToken = data.object.accessToken;
           if (newAccessToken) {
             store.dispatch(setAccessToken(newAccessToken)); // 새 accessToken을 Redux 스토어에 저장
-            onRefreshed(newAccessToken);
+            alert("다시 시도 해주세요!");
+            return;
+            // onRefreshed(newAccessToken);
           } else {
             throw new Error('Failed to refresh access token');
           }

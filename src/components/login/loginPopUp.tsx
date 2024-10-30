@@ -39,6 +39,7 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ isOpen, closeModal }) => {
       });
      
       const token = response.data.object.accessToken;
+      localStorage.setItem('id', username);
       dispatch(setAccessToken(token));
       closeModal();
     } catch (error:any) {

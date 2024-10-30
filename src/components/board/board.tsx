@@ -26,6 +26,7 @@ const PostDetail: React.FC = () => {
         
             } catch (error) {
                 console.error('Error fetching board:', error);
+                alert("게시글을 가져오는 데 오류가 발생했습니다."); 
             }
         };
 
@@ -34,6 +35,7 @@ const PostDetail: React.FC = () => {
 
     const handleCommentButtonClick = async () => {
         if (!accessToken) {
+          alert("로그인 후 다시 시도하세요.");
           console.error('Access token not found');
           return;
         }

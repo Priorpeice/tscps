@@ -1,59 +1,46 @@
 // src/utils/axiosInstance.ts
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { store } from '../store/store';// 스토어 가져오기
-import { setError,clearError } from '../store/slice/errorSlice';
-import { getCookie } from '../store/cookieUtils';
-import { accessToken, setAccessToken } from '../store/slice/authSlice';
+import { store } from '../store/store'; // 스토어 가져오기
+import { setError, clearError } from '../store/slice/errorSlice';
+import { getAllCookies, getCookie } from '../store/cookieUtils';
+import { setAccessToken } from '../store/slice/authSlice';
 import Cookies from 'js-cookie';
-import { useDispatch } from 'react-redux';
 
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL || '/api', // 기본 URL 설정
 });
 
-/*요청 instance*/
-axiosInstance.interceptors.request.use(
-  async (config) => { 
-    const accessToken = store.getState().accessToken.accessToken; // Redux 스토어에서 accessToken 가져오기
-    const refreshToken = Cookies.get('refreshToken');
-    const dispatch = useDispatch();
-    
-    if (accessToken && config.headers) {
-      config.headers['Authorization'] = `Bearer ${accessToken}`;
-    }
-    else if(!accessToken && refreshToken) 
-    {
-      try{
-        const response = await axios.post('/auth/rt', { refreshToken });
-        const token = response.data.object.accessToken;
-        dispatch(setAccessToken(token));
-        config.headers['Authorization'] = `Bearer ${token}`;
-      }
-      catch(error:any)
-      {
-        return Promise.reject(error);
-      }
-    }
-    return config;
-  },
-  (error) => {
-        return Promise.reject(error);
-  }
-);
 let isRefreshing = false;
 let refreshSubscribers: Array<(token: string) => void> = [];
 
-/* refreshToken 발급 후 모든 대기 요청에 새 accessToken 추가 */
+// refreshToken 발급 후 모든 대기 요청에 새 accessToken 추가
 const onRefreshed = (token: string) => {
   refreshSubscribers.forEach((callback) => callback(token));
   refreshSubscribers = [];
 };
 
-/* refreshToken 요청 후 대기중인 요청 추가 */
+// refreshToken 요청 후 대기 중인 요청 추가
 const addRefreshSubscriber = (callback: (token: string) => void) => {
   refreshSubscribers.push(callback);
 };
-// 응답 인터셉터
+
+// 요청 인터셉터 설정
+axiosInstance.interceptors.request.use(
+  async (config) => {
+    const accessToken = store.getState().accessToken.accessToken; // Redux 스토어에서 accessToken 가져오기
+
+
+    if (accessToken && config.headers) {
+      config.headers['Authorization'] = `Bearer ${accessToken}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// 응답 인터셉터 설정
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
     store.dispatch(clearError());
@@ -70,14 +57,16 @@ axiosInstance.interceptors.response.use(
         isRefreshing = true;
 
         try {
-          const refreshToken = getCookie('refreshToken'); // 쿠키에서 refreshToken 가져오기
-          const { data } = await axios.post<any>('/rt', {}, {
-            headers: { 'Authorization': `Bearer ${refreshToken}` }
+       
+          const refreshToken = Cookies.get('refreshToken'); // 쿠키에서 refreshToken 가져오기
+          console.log(refreshToken);
+          const { data } = await axios.post<any>('/api/auth/rt', {}, {
+            headers: { 'Authorization': `Bearer ${refreshToken}` },
           });
-          
+
           const newAccessToken = data.data.object.accessToken;
           if (newAccessToken) {
-            store.dispatch({ type: 'auth/setAccessToken', payload: newAccessToken }); // 새 accessToken을 Redux 스토어에 저장
+            store.dispatch(setAccessToken(newAccessToken)); // 새 accessToken을 Redux 스토어에 저장
             onRefreshed(newAccessToken);
           } else {
             throw new Error('Failed to refresh access token');
